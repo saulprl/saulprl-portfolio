@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
@@ -6,8 +7,8 @@ import { selectThemeMode } from "./store/uiSlice";
 import MainDrawer from "./components/layout/MainDrawer";
 
 import "./App.css";
-import logo from "./logo.svg";
 import MainContent from "./components/layout/MainContent";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const themeMode = useSelector(selectThemeMode);
@@ -40,6 +41,9 @@ function App() {
         main: "#F46201",
         dark: "#CB5201",
       },
+      background: {
+        default: themeMode === "dark" ? "#282c34" : "#DEE4E7",
+      },
     },
   });
 
@@ -48,22 +52,11 @@ function App() {
       <CssBaseline />
       <MainDrawer />
       <MainContent>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
+        <Switch>
+          <Route path="*">
+            <HomePage />
+          </Route>
+        </Switch>
       </MainContent>
     </ThemeProvider>
   );
