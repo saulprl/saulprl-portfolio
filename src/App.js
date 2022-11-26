@@ -1,13 +1,20 @@
+import { useSelector } from "react-redux";
+
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
-import logo from "./logo.svg";
-import "./App.css";
+import { selectThemeMode } from "./store/uiSlice";
 import MainDrawer from "./components/layout/MainDrawer";
 
+import "./App.css";
+import logo from "./logo.svg";
+import MainContent from "./components/layout/MainContent";
+
 function App() {
+  const themeMode = useSelector(selectThemeMode);
+
   const theme = createTheme({
     palette: {
-      mode: "dark",
+      mode: themeMode,
       primary: {
         light: "#EE588A",
         main: "#E91E63",
@@ -40,22 +47,24 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <MainDrawer />
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <MainContent>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Edit <code>src/App.js</code> and save to reload.
+            </p>
+            <a
+              className="App-link"
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn React
+            </a>
+          </header>
+        </div>
+      </MainContent>
     </ThemeProvider>
   );
 }
