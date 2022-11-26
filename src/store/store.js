@@ -2,8 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import uiReducer from "./uiSlice";
 
-export const store = configureStore({
+export default configureStore({
   reducer: {
-    uiReducer,
+    ui: uiReducer,
   },
 });
