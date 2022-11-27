@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
@@ -9,6 +9,7 @@ import MainDrawer from "./components/layout/MainDrawer";
 import "./App.css";
 import MainContent from "./components/layout/MainContent";
 import HomePage from "./pages/HomePage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 function App() {
   const themeMode = useSelector(selectThemeMode);
@@ -53,9 +54,9 @@ function App() {
       <MainDrawer />
       <MainContent>
         <Switch>
-          <Route path="*">
-            <HomePage />
-          </Route>
+          <Route path="/" exact render={() => <Redirect to="/home" />} />
+          <Route path="/home" exact render={() => <HomePage />} />
+          <Route path="/projects" render={() => <ProjectsPage />} />
         </Switch>
       </MainContent>
     </ThemeProvider>
