@@ -7,8 +7,8 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { IconContext } from "react-icons";
 
+import { IconContext } from "react-icons";
 import { FaNodeJs, FaReact } from "react-icons/fa";
 import {
   SiAngular,
@@ -60,7 +60,7 @@ const HomePage = () => {
           </Typography>
         </Box>
         <Box>
-          <Typography variant="h6">Technologies</Typography>
+          <Typography variant="h6">Technologies & languages</Typography>
           <Card
             variant="outlined"
             sx={{
