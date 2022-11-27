@@ -27,9 +27,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import saulprlPic from "../../assets/pic-squared.jpg";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../store/uiSlice";
+import { useHistory } from "react-router-dom";
 
 const MainDrawer = () => {
   const theme = useTheme();
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -38,17 +40,26 @@ const MainDrawer = () => {
     {
       label: "Home",
       icon: <HomeIcon />,
-      onClick: (index) => setSelectedIndex(index),
+      onClick: (index) => {
+        setSelectedIndex(index);
+        history.push("/home");
+      },
     },
     {
       label: "Projects",
       icon: <FolderIcon />,
-      onClick: (index) => setSelectedIndex(index),
+      onClick: (index) => {
+        setSelectedIndex(index);
+        history.push("/projects");
+      },
     },
     {
       label: "Courses",
       icon: <ClassIcon />,
-      onClick: (index) => setSelectedIndex(index),
+      onClick: (index) => {
+        setSelectedIndex(index);
+        history.push("/courses");
+      },
     },
   ];
 
