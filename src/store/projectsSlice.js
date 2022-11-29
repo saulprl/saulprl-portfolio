@@ -7,27 +7,56 @@ const projectsSlice = createSlice({
   initialState: {
     technologies: { ...technologies },
     projects: [...projects],
+    filters: [],
   },
   reducers: {
     resetProjects: (state) => {
       state.projects = [...projects];
     },
-    filterByLanguage: (state, action) => {
-      state.projects = state.projects.filter((proj) =>
-        proj.language.includes(action.payload.language)
-      );
+    addFilter: (state, action) => {
+      state.filters.push(action.payload.technology);
+      state.projects = state.projects.filter((proj) => {
+        return state.filters.every((filter) => {
+          for (const lang of proj.language) {
+            if (lang.name === filter.name) {
+              return true;
+            }
+          }
+          for (const database of proj.database) {
+            if (database.name === filter.name) {
+              return true;
+            }
+          }
+          return false;
+        });
+      });
     },
-    filterByDatabase: (state, action) => {
-      state.projects = state.projects.filter((proj) =>
-        proj.database.includes(action.payload.database)
+    removeFilter: (state, action) => {
+      state.filters = state.filters.filter(
+        (filter) => filter.name !== action.payload.technology.name
       );
+      state.projects = state.projects.filter((proj) => {
+        return state.filters.every((filter) => {
+          for (const lang of proj.language) {
+            if (lang.name === filter.name) {
+              return true;
+            }
+          }
+          for (const database of proj.database) {
+            if (database.name === filter.name) {
+              return true;
+            }
+          }
+          return false;
+        });
+      });
     },
   },
 });
 
-export const { resetProjects, filterByLanguage, filterByDatabase } =
-  projectsSlice.actions;
+export const { resetProjects, addFilter, removeFilter } = projectsSlice.actions;
 
+export const selectFilters = (state) => state.projects.filters;
 export const selectProjects = (state) => state.projects.projects;
 export const selectTechnologies = (state) => state.projects.technologies;
 
