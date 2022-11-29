@@ -24,7 +24,7 @@ const MainContent = (props) => {
           margin: "auto",
           ml: { md: "0" },
           borderRadius: "16px",
-          width: { xs: "100%", md: "500px" },
+          width: { xs: "100%", md: "530px" },
         }}
       >
         <CardHeader title={headerTitle} />
