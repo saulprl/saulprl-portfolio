@@ -1,98 +1,73 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { Card, CardContent, CardHeader, Chip, Divider } from "@mui/material";
-
-import { FaNodeJs, FaReact } from "react-icons/fa";
 import {
-  SiAngular,
-  SiDart,
-  SiFiles,
-  SiFirebase,
-  SiFlutter,
-  SiJava,
-  SiJavascript,
-  SiMicrosoftsqlserver,
-  SiMongodb,
-  SiMysql,
-  SiPostgresql,
-  SiSqlite,
-  SiTypescript,
-} from "react-icons/si";
-import { TbCSharp } from "react-icons/tb";
+  Card,
+  CardContent,
+  CardHeader,
+  Collapse,
+  Divider,
+  IconButton,
+} from "@mui/material";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { selectTechnologies } from "../../store/projectsSlice";
 
+import ProjectList from "./ProjectList";
+import TechnologyChip from "../technologies/TechnologyChip";
+
 const Projects = () => {
+  const [expanded, setExpanded] = useState(true);
   const technologies = useSelector(selectTechnologies);
 
-  const setTechnologyIcon = (technology) => {
-    switch (technology) {
-      case technologies.flutter:
-        return <SiFlutter />;
-      case technologies.dart:
-        return <SiDart />;
-      case technologies.react:
-        return <FaReact />;
-      case technologies.javascript:
-        return <SiJavascript />;
-      case technologies.angular:
-        return <SiAngular />;
-      case technologies.typescript:
-        return <SiTypescript />;
-      case technologies.java:
-      case technologies.javafx:
-        return <SiJava />;
-      case technologies.csharp:
-        return <TbCSharp />;
-      case technologies.nodejs:
-        return <FaNodeJs />;
-      case technologies.sqlite:
-        return <SiSqlite />;
-      case technologies.mongo:
-        return <SiMongodb />;
-      case technologies.postgres:
-        return <SiPostgresql />;
-      case technologies.mysql:
-        return <SiMysql />;
-      case technologies.sqlserver:
-        return <SiMicrosoftsqlserver />;
-      case technologies.firestore:
-      case technologies.rtdb:
-        return <SiFirebase />;
-      case technologies.files:
-        return <SiFiles />;
-      default:
-        return;
-    }
+  useEffect(() => {
+    const timer = setTimeout(() => setExpanded(false), 1100);
+
+    return () => clearTimeout(timer);
+  }, [setExpanded]);
+
+  const toggleContent = () => {
+    setExpanded((prevState) => !prevState);
   };
 
   const techArray = [];
   for (const key of Object.keys(technologies)) {
-    techArray.push({
-      ...technologies[key],
-      icon: setTechnologyIcon(technologies[key]),
-    });
+    techArray.push(technologies[key]);
   }
 
   return (
     <>
       <CardContent>
-        <Card sx={{ borderRadius: "8px" }}>
+        <Card sx={{ borderRadius: "8px", mb: "8px" }}>
           <CardHeader
-            title="Technologies & languages"
+            title="Filters"
             titleTypographyProps={{ variant: "h6" }}
+            action={
+              <IconButton onClick={toggleContent}>
+                {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              </IconButton>
+            }
           />
-          <Divider />
-          <CardContent>
-            {techArray.map((tech) => (
-              <Chip
-                label={tech.name}
-                icon={tech.icon}
-                sx={{ margin: "4px", pl: "4px" }}
-              />
-            ))}
-          </CardContent>
+          <Collapse in={expanded}>
+            <Divider />
+            <CardContent>
+              {techArray.map((tech) => (
+                <TechnologyChip
+                  key={tech.name}
+                  technology={tech}
+                  clickable={true}
+                  sx={{ fontSize: "11px" }}
+                />
+              ))}
+            </CardContent>
+          </Collapse>
         </Card>
+        {/* <Card sx={{ borderRadius: "8px" }}> */}
+        {/* <CardContent> */}
+        <ProjectList />
+        {/* </CardContent> */}
+        {/* </Card> */}
       </CardContent>
     </>
   );
