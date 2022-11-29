@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 
 import {
   AppBar,
@@ -24,40 +25,38 @@ import HomeIcon from "@mui/icons-material/Home";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
+import { setHeaderTitle, toggleTheme } from "../../store/uiSlice";
+
 import saulprlPic from "../../assets/pic-squared.jpg";
-import { useDispatch } from "react-redux";
-import { toggleTheme } from "../../store/uiSlice";
-import { useHistory } from "react-router-dom";
 
 const MainDrawer = () => {
   const theme = useTheme();
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { pathname } = useLocation();
 
   const items = [
     {
       label: "Home",
       icon: <HomeIcon />,
-      onClick: (index) => {
-        setSelectedIndex(index);
+      onClick: () => {
+        dispatch(setHeaderTitle({ title: "Home" }));
         history.push("/home");
       },
     },
     {
       label: "Projects",
       icon: <FolderIcon />,
-      onClick: (index) => {
-        setSelectedIndex(index);
+      onClick: () => {
+        dispatch(setHeaderTitle({ title: "Projects" }));
         history.push("/projects");
       },
     },
     {
       label: "Courses",
       icon: <ClassIcon />,
-      onClick: (index) => {
-        setSelectedIndex(index);
+      onClick: () => {
+        dispatch(setHeaderTitle({ title: "Courses" }));
         history.push("/courses");
       },
     },
@@ -155,7 +154,7 @@ const MainDrawer = () => {
             <ListItemButton
               key={index}
               sx={{ borderRadius: "16px", mb: "6px" }}
-              selected={index === selectedIndex}
+              selected={pathname.includes(item.label.toLowerCase())}
               onClick={item.onClick.bind(null, index)}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
