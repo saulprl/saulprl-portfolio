@@ -1,5 +1,3 @@
-import { Technology } from "../models/Technology";
-
 const techTypes = {
   framework: "Framework",
   language: "Language",
@@ -7,31 +5,32 @@ const techTypes = {
 };
 
 export const technologies = {
-  flutter: new Technology("Flutter", techTypes.framework),
-  dart: new Technology("Dart", techTypes.language),
-  react: new Technology("React", techTypes.framework),
-  javascript: new Technology("JavaScript", techTypes.language),
-  angular: new Technology("Angular", techTypes.framework),
-  typescript: new Technology("TypeScript", techTypes.language),
-  java: new Technology("Java", techTypes.language),
-  csharp: new Technology("C#", techTypes.language),
-  javafx: new Technology("JavaFX", techTypes.framework),
-  nodejs: new Technology("Node.js", techTypes.framework),
-  sqlite: new Technology("SQLite", techTypes.database),
-  mongo: new Technology("MongoDB", techTypes.database),
-  postgres: new Technology("PostgreSQL", techTypes.database),
-  mysql: new Technology("MySQL", techTypes.database),
-  sqlserver: new Technology("SQL Server", techTypes.database),
-  firestore: new Technology("Firebase Firestore", techTypes.database),
-  rtdb: new Technology("Firebase RTDB", techTypes.database),
-  files: new Technology("Files", techTypes.database),
+  flutter: { name: "Flutter", type: techTypes.framework },
+  dart: { name: "Dart", type: techTypes.language },
+  react: { name: "React", type: techTypes.framework },
+  javascript: { name: "JavaScript", type: techTypes.language },
+  angular: { name: "Angular", type: techTypes.framework },
+  typescript: { name: "TypeScript", type: techTypes.language },
+  java: { name: "Java", type: techTypes.language },
+  csharp: { name: "C#", type: techTypes.language },
+  javafx: { name: "JavaFX", type: techTypes.framework },
+  nodejs: { name: "Node.js", type: techTypes.framework },
+  sqlite: { name: "SQLite", type: techTypes.database },
+  mongo: { name: "MongoDB", type: techTypes.database },
+  postgres: { name: "PostgreSQL", type: techTypes.database },
+  mysql: { name: "MySQL", type: techTypes.database },
+  sqlserver: { name: "SQL Server", type: techTypes.database },
+  firestore: { name: "Firebase Firestore", type: techTypes.database },
+  rtdb: { name: "Firebase RTDB", type: techTypes.database },
+  files: { name: "Files", type: techTypes.database },
 };
 
 export const projects = [
   {
     id: "p1",
     name: "Moody Notes",
-    description: "Lorem",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ullamcorper interdum ligula vel suscipit. Curabitur id suscipit erat. Sed scelerisque lacus ac mi eleifend, ut.",
     language: [technologies.flutter, technologies.dart],
     database: [technologies.sqlite],
     images: [],
@@ -40,7 +39,8 @@ export const projects = [
   {
     id: "p2",
     name: "Candy Sun Web",
-    description: "Lorem",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ullamcorper interdum ligula vel suscipit. Curabitur id suscipit erat. Sed scelerisque lacus ac mi eleifend, ut.",
     language: [technologies.react, technologies.javascript],
     database: [technologies.firestore],
     images: [],
@@ -49,7 +49,8 @@ export const projects = [
   {
     id: "p3",
     name: "Candy Sun Mobile",
-    description: "Lorem",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quam arcu, porta ut tempus quis.",
     language: [technologies.flutter, technologies.dart],
     database: [technologies.firestore],
     images: [],
@@ -58,7 +59,8 @@ export const projects = [
   {
     id: "p4",
     name: "Candy Sun v1",
-    description: "Lorem",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quam arcu, porta ut tempus quis.",
     language: [technologies.angular, technologies.typescript],
     database: [technologies.mongo],
     images: [],
