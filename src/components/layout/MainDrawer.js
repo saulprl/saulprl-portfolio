@@ -25,7 +25,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
-import { setHeaderTitle, toggleTheme } from "../../store/uiSlice";
+import { toggleTheme } from "../../store/uiSlice";
 
 import saulprlPic from "../../assets/pic-squared.jpg";
 
@@ -40,7 +40,6 @@ const MainDrawer = () => {
       label: "Home",
       icon: <HomeIcon />,
       onClick: () => {
-        dispatch(setHeaderTitle({ title: "Home" }));
         history.push("/home");
       },
     },
@@ -48,7 +47,6 @@ const MainDrawer = () => {
       label: "Projects",
       icon: <FolderIcon />,
       onClick: () => {
-        dispatch(setHeaderTitle({ title: "Projects" }));
         history.push("/projects");
       },
     },
@@ -56,7 +54,6 @@ const MainDrawer = () => {
       label: "Courses",
       icon: <ClassIcon />,
       onClick: () => {
-        dispatch(setHeaderTitle({ title: "Courses" }));
         history.push("/courses");
       },
     },

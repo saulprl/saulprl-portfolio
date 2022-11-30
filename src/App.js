@@ -1,17 +1,21 @@
-import { useSelector } from "react-redux";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
-import { selectThemeMode } from "./store/uiSlice";
+import { selectThemeMode, setHeaderTitle } from "./store/uiSlice";
 import MainDrawer from "./components/layout/MainDrawer";
 
-import "./App.css";
 import MainContent from "./components/layout/MainContent";
+
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
+import "./App.css";
 
 function App() {
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const themeMode = useSelector(selectThemeMode);
 
   const theme = createTheme({
@@ -47,6 +51,18 @@ function App() {
       },
     },
   });
+
+  useEffect(() => {
+    if (pathname.includes("home")) {
+      dispatch(setHeaderTitle({ title: "Home" }));
+    }
+    if (pathname.includes("projects")) {
+      dispatch(setHeaderTitle({ title: "Projects" }));
+    }
+    if (pathname.includes("courses")) {
+      dispatch(setHeaderTitle({ title: "Courses" }));
+    }
+  }, [dispatch, pathname]);
 
   return (
     <ThemeProvider theme={theme}>
