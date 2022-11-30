@@ -95,8 +95,7 @@ const TechnologyChip = (props) => {
     case technologies.sqlserver:
       icon = <SiMicrosoftsqlserver />;
       break;
-    case technologies.firestore:
-    case technologies.rtdb:
+    case technologies.firebase:
       icon = <SiFirebase />;
       break;
     case technologies.files:
