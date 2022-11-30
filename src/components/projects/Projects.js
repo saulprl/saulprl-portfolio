@@ -8,6 +8,7 @@ import {
   Collapse,
   Divider,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -18,6 +19,7 @@ import ProjectList from "./ProjectList";
 import TechnologyChip from "../technologies/TechnologyChip";
 
 const Projects = () => {
+  const theme = useTheme();
   const [expanded, setExpanded] = useState(true);
   const technologies = useSelector(selectTechnologies);
 
@@ -39,19 +41,26 @@ const Projects = () => {
   return (
     <>
       <CardContent>
-        <Card sx={{ borderRadius: "8px", mb: "8px" }}>
+        <Card
+          sx={{
+            borderRadius: "8px",
+            border: theme.palette.border.default,
+            mb: "8px",
+          }}
+        >
           <CardHeader
             title="Filters"
             titleTypographyProps={{ variant: "h6" }}
             action={
-              <IconButton onClick={toggleContent}>
+              <IconButton onClick={toggleContent} sx={{ color: "white" }}>
                 {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
             }
+            sx={{ background: theme.palette.secondary.main, color: "white" }}
           />
           <Collapse in={expanded}>
             <Divider />
-            <CardContent>
+            <CardContent sx={{ background: theme.palette.background.default }}>
               {techArray.map((tech) => (
                 <TechnologyChip
                   key={tech.name}

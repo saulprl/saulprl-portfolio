@@ -59,8 +59,6 @@ const MainDrawer = () => {
     },
   ];
 
-  const borderColor = theme.palette.mode === "dark" ? "#282c34" : "gray";
-
   const drawer = (
     <>
       <AppBar position="static" color="primary" enableColorOnDark>
@@ -70,6 +68,7 @@ const MainDrawer = () => {
           </Typography>
           <Tooltip
             title={theme.palette.mode === "dark" ? "Light mode" : "Dark mode"}
+            placement="right"
           >
             <IconButton
               onClick={() => dispatch(toggleTheme())}
@@ -96,7 +95,7 @@ const MainDrawer = () => {
             height: "220px",
             margin: "auto",
             mt: "8px",
-            border: `1px solid ${borderColor}`,
+            border: theme.palette.border.default,
           }}
         />
         <Box
@@ -105,14 +104,14 @@ const MainDrawer = () => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-around",
-            background: "transparent",
+            background: theme.palette.background.default,
             maxWidth: "180px",
             margin: "auto",
             mt: "8px",
             pt: "2px",
             pb: "2px",
             borderRadius: "6px",
-            border: `1px solid ${borderColor}`,
+            border: theme.palette.border.default,
           }}
         >
           <Tooltip title="Twitter">
@@ -150,9 +149,18 @@ const MainDrawer = () => {
           {items.map((item, index) => (
             <ListItemButton
               key={index}
-              sx={{ borderRadius: "16px", mb: "6px" }}
               selected={pathname.includes(item.label.toLowerCase())}
               onClick={item.onClick.bind(null, index)}
+              sx={{
+                borderRadius: "16px",
+                mb: "6px",
+                "&.Mui-selected": {
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.primary.dark
+                      : theme.palette.primary.light,
+                },
+              }}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} />

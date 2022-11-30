@@ -32,7 +32,7 @@ const HomePage = () => {
       ? theme.palette.secondary.dark
       : theme.palette.secondary.light;
 
-  const iconColor = theme.palette.background.paper;
+  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#121212";
 
   return (
     <>
@@ -67,6 +67,7 @@ const HomePage = () => {
               // width: { xs: "100%", md: "75%" },
               padding: "1rem",
               margin: "auto",
+              background: theme.palette.background.default,
             }}
           >
             <IconContext.Provider value={{ color: iconColor }}>

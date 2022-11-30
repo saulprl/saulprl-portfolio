@@ -124,7 +124,7 @@ const TechnologyChip = (props) => {
 
   return (
     <Chip
-      color={isSelected() ? "primary" : "default"}
+      color={isSelected() ? "primary" : "secondary"}
       label={technology.name}
       icon={icon}
       sx={{ margin: "4px", pl: "4px", ...sx }}

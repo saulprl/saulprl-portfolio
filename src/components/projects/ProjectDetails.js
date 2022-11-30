@@ -14,6 +14,7 @@ import {
   ImageListItem,
   Tooltip,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { ArrowBack, ExpandLess, ExpandMore } from "@mui/icons-material";
 
@@ -24,6 +25,7 @@ import TechnologyChip from "../technologies/TechnologyChip";
 import ProjectImage from "./ProjectImage";
 
 const ProjectDetails = (props) => {
+  const theme = useTheme();
   const { id } = useParams();
   const history = useHistory();
   const projects = useSelector(selectProjects);
@@ -32,7 +34,7 @@ const ProjectDetails = (props) => {
   const selectedProject = projects.find((proj) => proj.id === id);
 
   const backClickHandler = () => {
-    history.goBack();
+    history.push("/projects");
   };
 
   const repoClickHandler = () => {
@@ -43,10 +45,23 @@ const ProjectDetails = (props) => {
     setExpanded((prevState) => !prevState);
   };
 
+  const cardBackground =
+    theme.palette.mode === "dark"
+      ? "default"
+      : theme.palette.background.default;
+  const iconColor = theme.palette.mode === "dark" ? "default" : "#2b2b2b";
+
   return (
     <>
       <CardContent>
-        <Card sx={{ borderRadius: "8px", mb: "8px" }}>
+        <Card
+          sx={{
+            background: cardBackground,
+            borderRadius: "8px",
+            border: theme.palette.border.default,
+            mb: "8px",
+          }}
+        >
           <CardHeader
             avatar={
               <Tooltip title="Back" enterDelay={400}>
@@ -56,7 +71,7 @@ const ProjectDetails = (props) => {
               </Tooltip>
             }
             title={selectedProject.name}
-            titleTypographyProps={{ variant: "h6" }}
+            titleTypographyProps={{ variant: "h6", fontWeight: "bold" }}
             // action={
             //   <Tooltip title="GitHub repository" placement="left">
             //     <IconButton
@@ -125,7 +140,10 @@ const ProjectDetails = (props) => {
                 }}
               >
                 <Tooltip title="GitHub repository" placement="bottom">
-                  <IconButton onClick={repoClickHandler}>
+                  <IconButton
+                    onClick={repoClickHandler}
+                    sx={{ color: iconColor }}
+                  >
                     <FaGithubSquare />
                   </IconButton>
                 </Tooltip>

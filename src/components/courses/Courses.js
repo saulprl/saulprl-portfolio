@@ -10,12 +10,14 @@ import {
   IconButton,
   Tooltip,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { selectCourses } from "../../store/coursesSlice";
 
 const Courses = () => {
+  const theme = useTheme();
   const history = useHistory();
 
   const courses = useSelector(selectCourses);
@@ -24,10 +26,23 @@ const Courses = () => {
     history.push(`/courses/${courseId}`);
   };
 
+  const cardBackground =
+    theme.palette.mode === "dark"
+      ? "default"
+      : theme.palette.background.default;
+
   return (
     <CardContent>
       {courses.map((crs) => (
-        <Card key={crs.id} sx={{ borderRadius: "8px", mb: "8px" }}>
+        <Card
+          key={crs.id}
+          sx={{
+            background: cardBackground,
+            borderRadius: "8px",
+            border: theme.palette.border.default,
+            mb: "8px",
+          }}
+        >
           <CardActionArea LinkComponent="a" href={crs.link} target="_blank">
             <CardContent>
               <Box
@@ -38,7 +53,7 @@ const Courses = () => {
                   mb: "4px",
                 }}
               >
-                <Typography variant="h6" fontSize="18px">
+                <Typography variant="h6" fontWeight="bold" sx={{ mr: "6px" }}>
                   {crs.name}
                 </Typography>
                 <Chip
@@ -49,13 +64,7 @@ const Courses = () => {
                   color={crs.status === "Completed" ? "success" : "warning"}
                 />
               </Box>
-              <Typography
-                variant="body1"
-                fontSize="14px"
-                color="rgba(255, 255, 255, 0.7)"
-              >
-                {crs.description}
-              </Typography>
+              <Typography variant="body1">{crs.description}</Typography>
             </CardContent>
           </CardActionArea>
           {crs.certificate && (

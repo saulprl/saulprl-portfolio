@@ -1,12 +1,13 @@
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import { Box, IconButton, Modal, Tooltip } from "@mui/material";
+import { Box, IconButton, Modal, Tooltip, useTheme } from "@mui/material";
 import { ArrowBack, ArrowForward, Close } from "@mui/icons-material";
 
 import { selectProjects } from "../../store/projectsSlice";
 
-const ProjectImage = (props) => {
+const ProjectImage = () => {
+  const theme = useTheme();
   const { id, imgIndex } = useParams();
   const history = useHistory();
 
@@ -47,13 +48,21 @@ const ProjectImage = (props) => {
     }
   };
 
+  const iconColor = theme.palette.mode === "dark" ? "default" : "white";
+
   return (
     <Modal open={true} onClose={closeModalHandler}>
       <div onKeyDown={keyPressHandler}>
         <Tooltip title="Close" placement="bottom">
           <IconButton
             onClick={closeModalHandler}
-            sx={{ position: "fixed", zIndex: "999", top: "8px", right: "8px" }}
+            sx={{
+              color: iconColor,
+              position: "fixed",
+              zIndex: "999",
+              top: "8px",
+              right: "8px",
+            }}
           >
             <Close />
           </IconButton>
@@ -62,6 +71,7 @@ const ProjectImage = (props) => {
           <IconButton
             onClick={previousImageHandler}
             sx={{
+              color: iconColor,
               position: "fixed",
               zIndex: "999",
               top: "50%",
@@ -76,6 +86,7 @@ const ProjectImage = (props) => {
           <IconButton
             onClick={nextImageHandler}
             sx={{
+              color: iconColor,
               position: "fixed",
               zIndex: "999",
               top: "50%",
@@ -92,7 +103,7 @@ const ProjectImage = (props) => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            height: "100vh",
+            height: "95vh",
           }}
         >
           <img
