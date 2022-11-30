@@ -49,6 +49,10 @@ function App() {
       background: {
         default: themeMode === "dark" ? "#282c34" : "#DEE4E7",
       },
+      border: {
+        default:
+          themeMode === "dark" ? "1px solid #282c34" : "1px solid #c3c8cb",
+      },
     },
   });
 
