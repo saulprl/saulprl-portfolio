@@ -11,7 +11,7 @@ import MainContent from "./components/layout/MainContent";
 
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
-import "./App.css";
+import CoursesPage from "./pages/CoursesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +73,7 @@ function App() {
           <Route path="/" exact render={() => <Redirect to="/home" />} />
           <Route path="/home" exact render={() => <HomePage />} />
           <Route path="/projects" render={() => <ProjectsPage />} />
+          <Route path="/courses" render={() => <CoursesPage />} />
         </Switch>
       </MainContent>
     </ThemeProvider>
