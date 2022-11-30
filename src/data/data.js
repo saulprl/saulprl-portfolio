@@ -1,3 +1,15 @@
+import mnMainScreen from "../assets/moody-notes/mn_main_screen.jpeg";
+import mnDrawer from "../assets/moody-notes/mn_drawer.jpeg";
+import mnCaption from "../assets/moody-notes/mn_caption.jpeg";
+import mnBasicEmotions from "../assets/moody-notes/mn_basic_emotions.jpeg";
+import mnDerivedEm from "../assets/moody-notes/mn_derived_emotions.jpeg";
+import mnSpecificEm from "../assets/moody-notes/mn_specific_emotions.jpeg";
+import mnLightMode from "../assets/moody-notes/mn_light_mode.jpeg";
+import mnCalendar1 from "../assets/moody-notes/mn_calendar_1.jpeg";
+import mnCalendar2 from "../assets/moody-notes/mn_calendar_2.jpeg";
+import mnFilters from "../assets/moody-notes/mn_filters.jpeg";
+import mnMainFiltered from "../assets/moody-notes/mn_main_with_filters.jpeg";
+
 const techTypes = {
   framework: "Framework",
   language: "Language",
@@ -20,8 +32,7 @@ export const technologies = {
   postgres: { name: "PostgreSQL", type: techTypes.database },
   mysql: { name: "MySQL", type: techTypes.database },
   sqlserver: { name: "SQL Server", type: techTypes.database },
-  firestore: { name: "Firebase Firestore", type: techTypes.database },
-  rtdb: { name: "Firebase RTDB", type: techTypes.database },
+  firebase: { name: "Firebase", type: techTypes.database },
   files: { name: "Files", type: techTypes.database },
 };
 
@@ -30,10 +41,22 @@ export const projects = [
     id: "p1",
     name: "Moody Notes",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ullamcorper interdum ligula vel suscipit. Curabitur id suscipit erat. Sed scelerisque lacus ac mi eleifend, ut.",
+      "Moody Notes is not your typical notes app. This is a personal project I started for people struggling with anxiety like myself. Moody Notes allows the user to submit notes, and also attach up to 72 emotions to each one. The notes are then displayed on the main screen and the user can choose to sort by oldest, newest, and even filter the list by group of emotions. Lastly, Moody Notes includes a calendar which lets the user keep track of the notes submitted each day.",
     language: [technologies.flutter, technologies.dart],
     database: [technologies.sqlite],
-    images: [],
+    images: [
+      mnMainScreen,
+      mnDrawer,
+      mnCaption,
+      mnBasicEmotions,
+      mnDerivedEm,
+      mnSpecificEm,
+      mnLightMode,
+      mnCalendar1,
+      mnCalendar2,
+      mnFilters,
+      mnMainFiltered,
+    ],
     repo: "https://github.com/saulprl/moody_notes",
   },
   {
@@ -42,7 +65,7 @@ export const projects = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ullamcorper interdum ligula vel suscipit. Curabitur id suscipit erat. Sed scelerisque lacus ac mi eleifend, ut.",
     language: [technologies.react, technologies.javascript],
-    database: [technologies.firestore],
+    database: [technologies.firebase],
     images: [],
     repo: "https://github.com/saulprl/candy_sun_react",
   },
@@ -52,7 +75,7 @@ export const projects = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quam arcu, porta ut tempus quis.",
     language: [technologies.flutter, technologies.dart],
-    database: [technologies.firestore],
+    database: [technologies.firebase],
     images: [],
     repo: "https://github.com/saulprl/candy_sun",
   },
