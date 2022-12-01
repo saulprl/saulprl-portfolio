@@ -139,7 +139,7 @@ const ProjectDetails = (props) => {
                   justifyContent: "flex-end",
                 }}
               >
-                <Tooltip title="GitHub repository" placement="bottom">
+                <Tooltip title="GitHub repository" placement="left">
                   <IconButton
                     onClick={repoClickHandler}
                     sx={{ color: iconColor }}
