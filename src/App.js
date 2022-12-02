@@ -12,6 +12,7 @@ import MainContent from "./components/layout/MainContent";
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import CoursesPage from "./pages/CoursesPage";
+import MainAppBar from "./components/layout/MainAppBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <MainDrawer />
+      <MainAppBar />
       <MainContent>
         <Switch>
           <Route path="/" exact render={() => <Redirect to="/home" />} />
