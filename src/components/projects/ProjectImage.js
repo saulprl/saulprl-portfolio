@@ -108,21 +108,36 @@ const ProjectImage = () => {
         </Tooltip>
         <Box
           sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            height: "95vh",
-            width: isMobile ? "80%" : "auto",
-            pt: { xs: "10%", sm: 0 },
+            // position: "absolute",
+            // top: "50%",
+            // left: "50%",
+            // transform: "translate(-50%, -50%)",
+            height: isMobile ? "80vh" : "100vh",
+            width: isMobile ? "auto" : "auto",
+            // pt: { xs: "10%", sm: 0 },
+            // px: { xs: 0, sm: "5%" },
           }}
         >
-          <img
-            height={isMobile ? "undefined" : "100%"}
-            width={isMobile ? "100%" : "undefined"}
-            src={imageSource}
-            alt={`Screenshot ${imgIndex + 1}`}
-          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              display: "flex",
+              padding: "8px",
+            }}
+          >
+            <img
+              src={imageSource}
+              alt={`Screenshot ${imgIndex + 1}`}
+              style={{
+                margin: "auto",
+                maxHeight: "100vh",
+                maxWidth: "100vw",
+              }}
+            />
+          </Box>
         </Box>
       </div>
     </Modal>
