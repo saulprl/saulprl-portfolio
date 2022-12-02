@@ -51,19 +51,25 @@ const CertificateImage = () => {
         </Tooltip>
         <Box
           sx={{
+            display: "flex",
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            height: "95vh",
-            pt: { xs: "50%", sm: "0" },
+            // height: "95vh",
+            // pt: { xs: "50%", sm: "0" },
           }}
         >
           <img
             src={imageSource}
             alt={`${selectedCourse.name} completion certificate`}
-            height={isMobile ? "60%" : "100%"}
-            style={{ transform: isMobile ? "rotate(90deg)" : "none" }}
+            // height={isMobile ? "60%" : "100%"}
+            style={{
+              margin: "auto",
+              transform: isMobile ? "rotate(90deg)" : "none",
+              maxHeight: "100vh",
+              maxWidth: "100vw",
+            }}
           />
         </Box>
       </div>
