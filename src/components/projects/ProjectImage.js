@@ -1,7 +1,14 @@
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-import { Box, IconButton, Modal, Tooltip, useTheme } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Modal,
+  Tooltip,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { ArrowBack, ArrowForward, Close } from "@mui/icons-material";
 
 import { selectProjects } from "../../store/projectsSlice";
@@ -10,6 +17,8 @@ const ProjectImage = () => {
   const theme = useTheme();
   const { id, imgIndex } = useParams();
   const history = useHistory();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const projects = useSelector(selectProjects);
 
@@ -104,10 +113,13 @@ const ProjectImage = () => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             height: "95vh",
+            width: isMobile ? "80%" : "auto",
+            pt: { xs: "10%", sm: 0 },
           }}
         >
           <img
-            height="100%"
+            height={isMobile ? "undefined" : "100%"}
+            width={isMobile ? "100%" : "undefined"}
             src={imageSource}
             alt={`Screenshot ${imgIndex + 1}`}
           />

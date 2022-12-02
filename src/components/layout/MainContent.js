@@ -9,9 +9,9 @@ import {
   Tooltip,
   useTheme,
 } from "@mui/material";
+import { Article } from "@mui/icons-material";
 
 import { selectHeaderTitle } from "../../store/uiSlice";
-import { Article } from "@mui/icons-material";
 
 const MainContent = (props) => {
   const theme = useTheme();
@@ -31,14 +31,14 @@ const MainContent = (props) => {
         height: { sm: "100vh" },
         width: { sm: "calc(100% - 280px)" },
         ml: { sm: "280px" },
-        padding: "1rem",
+        padding: "8px",
         overflow: "auto",
       }}
     >
       <Card
         variant="outlined"
         sx={{
-          minHeight: "95vh",
+          minHeight: "97vh",
           margin: "auto",
           ml: { md: "0" },
           borderRadius: "16px",

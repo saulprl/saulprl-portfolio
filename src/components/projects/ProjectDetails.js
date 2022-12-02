@@ -105,7 +105,7 @@ const ProjectDetails = (props) => {
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: { xs: "column", sm: "row" },
                 justifyContent: "space-between",
                 mt: "8px",
               }}
@@ -113,7 +113,7 @@ const ProjectDetails = (props) => {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: { xs: "column", sm: "row" },
                   justifyContent: "flex-start",
                 }}
               >

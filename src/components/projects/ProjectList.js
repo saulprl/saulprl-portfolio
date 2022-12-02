@@ -57,7 +57,7 @@ const ProjectList = (props) => {
                     component="div"
                     sx={{
                       display: "flex",
-                      flexDirection: "row",
+                      flexDirection: { xs: "column", sm: "row" },
                       justifyContent: "space-between",
                     }}
                   >
@@ -76,6 +76,7 @@ const ProjectList = (props) => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "flex-start",
+                        alignItems: { sm: "flex-end" },
                       }}
                     >
                       {proj.language.map((lang, index) => (
@@ -83,7 +84,6 @@ const ProjectList = (props) => {
                           key={index}
                           technology={lang}
                           clickable={false}
-                          sx={{ alignSelf: "flex-end" }}
                         />
                       ))}
                       {proj.database.map((database, index) => (

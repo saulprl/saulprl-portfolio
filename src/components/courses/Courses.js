@@ -48,12 +48,16 @@ const Courses = () => {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: { xs: "column", sm: "row" },
                   justifyContent: "space-between",
                   mb: "4px",
                 }}
               >
-                <Typography variant="h6" fontWeight="bold" sx={{ mr: "6px" }}>
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  sx={{ mr: "6px", mb: { xs: "6px", sm: 0 } }}
+                >
                   {crs.name}
                 </Typography>
                 <Chip
@@ -62,6 +66,7 @@ const Courses = () => {
                     crs.status === "Completed" ? <CheckCircle /> : <Pending />
                   }
                   color={crs.status === "Completed" ? "success" : "warning"}
+                  sx={{ mb: { xs: "6px", sm: 0 } }}
                 />
               </Box>
               <Typography variant="body1">{crs.description}</Typography>

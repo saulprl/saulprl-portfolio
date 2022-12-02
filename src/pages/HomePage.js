@@ -3,6 +3,7 @@ import {
   Box,
   Card,
   CardContent,
+  Grid,
   Tooltip,
   Typography,
   useTheme,
@@ -32,7 +33,103 @@ const HomePage = () => {
       ? theme.palette.secondary.dark
       : theme.palette.secondary.light;
 
-  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#121212";
+  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#FFFFFF";
+
+  const techBox = (
+    <Grid container spacing={1}>
+      <Grid item xs={3} sm={2} justifyContent="space-evenly">
+        <Tooltip title="React" placement="top">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <FaReact />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="Flutter" placement="top">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiFlutter />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="Node.js" placement="top">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <FaNodeJs />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="Angular" placement="top">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiAngular />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="MySQL" placement="top">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiMysql />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="PostgreSQL" placement="top">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiPostgresql />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="SQL Server" placement="top">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiMicrosoftsqlserver />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="JavaScript">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiJavascript />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="TypeScript">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiTypescript />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="Java">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiJava />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="C#">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <TbCSharp />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm={2}>
+        <Tooltip title="Firebase">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiFirebase />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+      <Grid item xs={3} sm="auto">
+        <Tooltip title="MongoDB" placement="right">
+          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
+            <SiMongodb />
+          </Avatar>
+        </Tooltip>
+      </Grid>
+    </Grid>
+  );
 
   return (
     <>
@@ -64,97 +161,14 @@ const HomePage = () => {
           <Card
             variant="outlined"
             sx={{
-              // width: { xs: "100%", md: "75%" },
+              width: "100%",
               padding: "1rem",
               margin: "auto",
               background: theme.palette.background.default,
             }}
           >
             <IconContext.Provider value={{ color: iconColor }}>
-              <Box
-                component="div"
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-around",
-                  mb: "0.5rem",
-                }}
-              >
-                <Tooltip title="React" placement="top">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <FaReact />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="Flutter" placement="top">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiFlutter />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="Node.js" placement="top">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <FaNodeJs />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="Angular" placement="top">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiAngular />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="MySQL" placement="top">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiMysql />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="PostgreSQL" placement="top">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiPostgresql />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="SQL Server" placement="top">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiMicrosoftsqlserver />
-                  </Avatar>
-                </Tooltip>
-              </Box>
-              <Box
-                component="div"
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Tooltip title="JavaScript">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiJavascript />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="TypeScript">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiTypescript />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="Java">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiJava />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="C#">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <TbCSharp />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="Firebase">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiFirebase />
-                  </Avatar>
-                </Tooltip>
-                <Tooltip title="MongoDB">
-                  <Avatar sx={{ bgcolor: avatarBackgroundColor }}>
-                    <SiMongodb />
-                  </Avatar>
-                </Tooltip>
-              </Box>
+              {techBox}
             </IconContext.Provider>
           </Card>
         </Box>
