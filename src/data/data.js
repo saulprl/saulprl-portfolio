@@ -15,6 +15,42 @@ import mnCalendar2 from "../assets/moody-notes/mn_calendar_2.jpeg";
 import mnFilters from "../assets/moody-notes/mn_filters.jpeg";
 import mnMainFiltered from "../assets/moody-notes/mn_main_with_filters.jpeg";
 
+import csrDashboard from "../assets/candy-sun-react/csun-dashboard.jpeg";
+import csrEmployees from "../assets/candy-sun-react/csun-employees.jpeg";
+import csrProductsMobile from "../assets/candy-sun-react/csun-products-mobile.jpeg";
+import csrProducts from "../assets/candy-sun-react/csun-products.jpeg";
+import csrSalesMobile from "../assets/candy-sun-react/csun-sales-mobile.jpeg";
+import csrSales from "../assets/candy-sun-react/csun-sales.jpeg";
+import csrSearch from "../assets/candy-sun-react/csun-search.jpeg";
+
+import csmAddProductV from "../assets/candy-sun-mobile/add-product-validation.jpg";
+import csmAddProduct from "../assets/candy-sun-mobile/add-product.jpg";
+import csmDrawer from "../assets/candy-sun-mobile/app-drawer.jpg";
+import csmEditProduct from "../assets/candy-sun-mobile/edit-product-form.jpg";
+import csmLoginValid from "../assets/candy-sun-mobile/error-validation.jpg";
+import csmLoginScreen from "../assets/candy-sun-mobile/login-screen.jpg";
+import csmProductDetails from "../assets/candy-sun-mobile/product-details.jpg";
+import csmProductsList2 from "../assets/candy-sun-mobile/products-list-expanded.jpg";
+import csmProductsList1 from "../assets/candy-sun-mobile/products-list.jpg";
+import csmSalesList2 from "../assets/candy-sun-mobile/sales-list-expanded.jpg";
+import csmSalesList1 from "../assets/candy-sun-mobile/sales-list.jpg";
+import csmSignupScreen from "../assets/candy-sun-mobile/signup-screen.jpg";
+
+import csaAddCategory from "../assets/candy-sun-angular/add-category.png";
+import csaAddEmployee from "../assets/candy-sun-angular/add-employee-form.png";
+import csaAddProduct from "../assets/candy-sun-angular/add-product.png";
+import csaCategoryTable from "../assets/candy-sun-angular/category-grid.png";
+import csaDeleteCategory from "../assets/candy-sun-angular/delete-category.png";
+import csaDeleteProduct from "../assets/candy-sun-angular/delete-product.png";
+import csaEditCategory from "../assets/candy-sun-angular/edit-category.png";
+import csaEditProduct from "../assets/candy-sun-angular/edit-product-form.png";
+import csaLoggedIn from "../assets/candy-sun-angular/logged-in.png";
+import csaLoginScreen from "../assets/candy-sun-angular/login-screen.png";
+import csaProductsFilter from "../assets/candy-sun-angular/products-filter.png";
+import csaProductsMenu from "../assets/candy-sun-angular/products-grid-menu.png";
+import csaProductsTable from "../assets/candy-sun-angular/products-grid.png";
+import csaStartingPage from "../assets/candy-sun-angular/starting-page.png";
+
 const techTypes = {
   framework: "Framework",
   language: "Language",
@@ -77,36 +113,48 @@ export const projects = [
     id: uuid(),
     name: "Candy Sun Web",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ullamcorper interdum ligula vel suscipit. Curabitur id suscipit erat. Sed scelerisque lacus ac mi eleifend, ut.",
+      "Candy Sun Web is the latest iteration of my Candy Sun project. It consists of a React web app directed to managing a real microbusiness. It keeps track of products, employees (app users, authentication), and sales, even though it's not a point-of-sale per se.",
     language: [technologies.react, technologies.javascript],
     database: [technologies.firebase],
-    images: [],
+    images: [
+      csrDashboard,
+      csrEmployees,
+      csrProducts,
+      csrProductsMobile,
+      csrSales,
+      csrSalesMobile,
+      csrSearch,
+    ],
     repo: "https://github.com/saulprl/candy_sun_react",
   },
   {
     id: uuid(),
     name: "Candy Sun Mobile",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quam arcu, porta ut tempus quis.",
+      "Candy Sun Mobile is the mobile version for my Candy Sun project. It was built while I was learning Flutter and it allowed me to practice a lot of the new stuff I was learning since I had never worked on mobile applications before.",
     language: [technologies.flutter, technologies.dart],
     database: [technologies.firebase],
-    images: [],
+    images: [
+      csmLoginScreen,
+      csmLoginValid,
+      csmSignupScreen,
+      csmDrawer,
+      csmProductsList1,
+      csmProductsList2,
+      csmProductDetails,
+      csmAddProduct,
+      csmAddProductV,
+      csmEditProduct,
+      csmSalesList1,
+      csmSalesList2,
+    ],
     repo: "https://github.com/saulprl/candy_sun",
   },
   {
     id: uuid(),
-    name: "Candy Sun v1",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quam arcu, porta ut tempus quis.",
-    language: [technologies.angular, technologies.typescript],
-    database: [technologies.mongo],
-    images: [],
-    repo: "https://github.com/saulprl/candy-sun-angular",
-  },
-  {
-    id: uuid(),
     name: "Flutter Calculator",
-    description: "Lorem",
+    description:
+      "Flutter Calculator was a small project I started just for practicing. It was based on the Windows 10 standard calculator and it used in-fix to post-fix conversion and resolution, so it would be able to take operand hierarchy into account.",
     language: [technologies.flutter, technologies.dart],
     database: [],
     images: [],
@@ -114,53 +162,9 @@ export const projects = [
   },
   {
     id: uuid(),
-    name: "Ventas DS3",
-    description: "Lorem",
-    language: [technologies.java, technologies.javafx],
-    database: [technologies.postgres],
-    images: [],
-    repo: "https://github.com/saulprl/VentasDS3",
-  },
-  {
-    id: uuid(),
-    name: "Library for Teachers",
-    description: "Lorem",
-    language: [technologies.java, technologies.javafx],
-    database: [technologies.postgres],
-    images: [],
-    repo: "https://github.com/saulprl/Library-for-Teachers",
-  },
-  {
-    id: uuid(),
-    name: "ChatFX",
-    description: "Lorem",
-    language: [technologies.java, technologies.javafx],
-    database: [technologies.mysql],
-    images: [],
-    repo: "https://github.com/saulprl/ChatFX",
-  },
-  {
-    id: uuid(),
-    name: "Styper",
-    description: "Lorem",
-    language: [technologies.csharp],
-    database: [technologies.files],
-    images: [],
-    repo: "https://github.com/saulprl/Styper",
-  },
-  {
-    id: uuid(),
-    name: "Bus Station",
-    description: "Lorem",
-    language: [technologies.java],
-    database: [technologies.files],
-    images: [],
-    repo: "https://github.com/saulprl/PIng-Final-Project",
-  },
-  {
-    id: uuid(),
     name: "Kubergames",
-    description: "Lorem",
+    description:
+      "Kubergames is a React web app which holds 4 different games written in JavaScript with the p5.js library. Kubergames was created to be deployed on a kubernetes environment, along with its API and a MySQL database for game scores.",
     language: [technologies.react, technologies.javascript],
     database: [technologies.mysql],
     images: [],
@@ -169,7 +173,8 @@ export const projects = [
   {
     id: uuid(),
     name: "Kubergames API",
-    description: "Lorem",
+    description:
+      "This is the API for Kubergames. It was written on Node.js with Express and, just like the client, it was created to deploy on a kubernetes environment.",
     language: [technologies.nodejs, technologies.javascript],
     database: [technologies.mysql],
     images: [],
@@ -177,8 +182,93 @@ export const projects = [
   },
   {
     id: uuid(),
+    name: "Candy Sun v1",
+    description:
+      "This  is Candy Sun's first iteration back in 2020 when I was learning Angular (MEAN Stack). It was also my first approach to full-stack web development.",
+    language: [technologies.angular, technologies.typescript],
+    database: [technologies.mongo],
+    images: [
+      csaStartingPage,
+      csaLoginScreen,
+      csaLoggedIn,
+      csaProductsTable,
+      csaProductsFilter,
+      csaProductsMenu,
+      csaAddProduct,
+      csaEditProduct,
+      csaDeleteProduct,
+      csaCategoryTable,
+      csaAddCategory,
+      csaEditCategory,
+      csaDeleteCategory,
+      csaAddEmployee,
+    ],
+    repo: "https://github.com/saulprl/candy-sun-angular",
+  },
+  {
+    id: uuid(),
+    name: "Candy Sun v1 API",
+    description:
+      "This is the API Candy Sun's first iteration used. It was written on Node.js with Express and used a MongoDB cluster as database.",
+    language: [technologies.nodejs, technologies.javascript],
+    database: [technologies.mongo],
+    images: [],
+    repo: "https://github.com/saulprl/candy-sun-angular",
+  },
+  {
+    id: uuid(),
+    name: "Ventas DS3",
+    description:
+      "VentasDS3 was my first full-stack desktop application. It consists of a point-of-sale app for a fictional business, built on JavaFX with a PostgreSQL database.",
+    language: [technologies.java, technologies.javafx],
+    database: [technologies.postgres],
+    images: [],
+    repo: "https://github.com/saulprl/VentasDS3",
+  },
+  {
+    id: uuid(),
+    name: "Library for Teachers",
+    description:
+      "Library for Teachers was one of my first JavaFX projects. It's basically a client for a teacher library, which manages authors, their books, teachers, and book loans. It was created to demonstrate an app's workflow with a PostgreSQL database.",
+    language: [technologies.java, technologies.javafx],
+    database: [technologies.postgres],
+    images: [],
+    repo: "https://github.com/saulprl/Library-for-Teachers",
+  },
+  {
+    id: uuid(),
+    name: "ChatFX",
+    description:
+      "ChatFX consists of a JavaFX app divided into a client, a server, and a database. It's sort of inspired by the classic Microsoft Messenger: you could see all of the users connected to the server and start up a conversation with any of them, or even create a group chat.",
+    language: [technologies.java, technologies.javafx],
+    database: [technologies.mysql],
+    images: [],
+    repo: "https://github.com/saulprl/ChatFX",
+  },
+  {
+    id: uuid(),
+    name: "Styper",
+    description:
+      "Styper is a desktop game based off of TypeRacer. The challenge was to enter the words displayed on screen without grammar mistakes; the more in a row, the faster you go. It had three different game modes, audio, and a scores table stored in files.",
+    language: [technologies.csharp],
+    database: [technologies.files],
+    images: [],
+    repo: "https://github.com/saulprl/Styper",
+  },
+  // {
+  //   id: uuid(),
+  //   name: "Bus Station",
+  //   description: "Lorem",
+  //   language: [technologies.java],
+  //   database: [technologies.files],
+  //   images: [],
+  //   repo: "https://github.com/saulprl/PIng-Final-Project",
+  // },
+  {
+    id: uuid(),
     name: "Maze Generator",
-    description: "Lorem",
+    description:
+      "Maze generator was one of my first approaches to JavaScript (and p5.js). It consists of a simple maze generator, and nothing else. Pretty visually satisfying.",
     language: [technologies.javascript],
     database: [],
     images: [],
@@ -187,7 +277,8 @@ export const projects = [
   {
     id: uuid(),
     name: "Space Invaders",
-    description: "Lorem",
+    description:
+      "Space Invaders is a simple JavaScript game built on the p5.js library.",
     language: [technologies.javascript],
     database: [],
     images: [],
@@ -196,20 +287,12 @@ export const projects = [
   {
     id: uuid(),
     name: "Snake Game",
-    description: "Lorem",
+    description:
+      "Snake Game was the first project I created with JavaScript. And that's it, just the Snake Game.",
     language: [technologies.javascript],
     database: [],
     images: [],
     repo: "https://github.com/saulprl/Snake-game",
-  },
-  {
-    id: uuid(),
-    name: "Candy Sun v1 API",
-    description: "Lorem",
-    language: [technologies.nodejs, technologies.javascript],
-    database: [technologies.mongo],
-    images: [],
-    repo: "https://github.com/saulprl/candy-sun-angular",
   },
 ];
 
