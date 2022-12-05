@@ -59,6 +59,16 @@ import kbgBird from "../assets/kubergames/flappy-bird.jpeg";
 import kbgApi from "../assets/kubergames/api-response.jpeg";
 import kbgKuber from "../assets/kubergames/kubernetes.jpeg";
 
+import stpHome from "../assets/styper/home.jpeg";
+import stpName from "../assets/styper/name-prompt.jpeg";
+import stpCar from "../assets/styper/car-selection.jpeg";
+import stpMenu from "../assets/styper/game-menu.jpeg";
+import stpMode from "../assets/styper/mode-selection.jpeg";
+import stpRace from "../assets/styper/race-start.jpeg";
+import stpWon from "../assets/styper/race-end.jpeg";
+import stpScores from "../assets/styper/scores.jpeg";
+import stpVolume from "../assets/styper/volume-slider.jpeg";
+
 const techTypes = {
   framework: "Framework",
   language: "Language",
@@ -268,7 +278,17 @@ export const projects = [
       "Styper is a desktop game based off of TypeRacer. The challenge was to enter the words displayed on screen without grammar mistakes; the more in a row, the faster you go. It had three different game modes, audio, and a scores table stored in files.",
     language: [technologies.csharp],
     database: [technologies.files],
-    images: [],
+    images: [
+      stpHome,
+      stpName,
+      stpCar,
+      stpMenu,
+      stpMode,
+      stpRace,
+      stpWon,
+      stpScores,
+      stpVolume,
+    ],
     repo: "https://github.com/saulprl/Styper",
   },
   // {
