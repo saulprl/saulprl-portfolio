@@ -19,7 +19,7 @@ const MainContent = (props) => {
 
   const resumeClickHandler = (event) => {
     window.open(
-      "https://drive.google.com/file/d/1k4RIq9MOmsY6oYr9CCBdv3bOMI4HqKDh/view?usp=share_link",
+      "https://drive.google.com/file/d/1CUI2A35QdO5em1i3ycHzgtu3hm2R57su/view?usp=sharing",
       "_blank",
       "noopener,noreferrer"
     );
