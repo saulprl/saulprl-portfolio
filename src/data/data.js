@@ -51,6 +51,14 @@ import csaProductsMenu from "../assets/candy-sun-angular/products-grid-menu.png"
 import csaProductsTable from "../assets/candy-sun-angular/products-grid.png";
 import csaStartingPage from "../assets/candy-sun-angular/starting-page.png";
 
+import kbgHome from "../assets/kubergames/home-page.jpeg";
+import kbgSpace from "../assets/kubergames/space-invaders.jpeg";
+import kbgSnake from "../assets/kubergames/snake-game.jpeg";
+import kbgSweeper from "../assets/kubergames/minesweeper.jpeg";
+import kbgBird from "../assets/kubergames/flappy-bird.jpeg";
+import kbgApi from "../assets/kubergames/api-response.jpeg";
+import kbgKuber from "../assets/kubergames/kubernetes.jpeg";
+
 const techTypes = {
   framework: "Framework",
   language: "Language",
@@ -167,7 +175,15 @@ export const projects = [
       "Kubergames is a React web app which holds 4 different games written in JavaScript with the p5.js library. Kubergames was created to be deployed on a kubernetes environment, along with its API and a MySQL database for game scores.",
     language: [technologies.react, technologies.javascript],
     database: [technologies.mysql],
-    images: [],
+    images: [
+      kbgHome,
+      kbgSpace,
+      kbgSnake,
+      kbgSweeper,
+      kbgBird,
+      kbgApi,
+      kbgKuber,
+    ],
     repo: "https://github.com/saulprl/kubergames-js",
   },
   {
@@ -177,7 +193,7 @@ export const projects = [
       "This is the API for Kubergames. It was written on Node.js with Express and, just like the client, it was created to deploy on a kubernetes environment.",
     language: [technologies.nodejs, technologies.javascript],
     database: [technologies.mysql],
-    images: [],
+    images: [kbgApi, kbgKuber],
     repo: "https://github.com/McFlyZero/api-kubergames",
   },
   {
