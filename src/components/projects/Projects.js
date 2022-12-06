@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 import {
   Card,
@@ -13,15 +12,16 @@ import {
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { selectTechnologies } from "../../store/projectsSlice";
-
 import ProjectList from "./ProjectList";
 import TechnologyChip from "../technologies/TechnologyChip";
 
+import { technologies as techData } from "../../data/data";
+
 const Projects = () => {
   const theme = useTheme();
+  const [filters, setFilters] = useState([]);
   const [expanded, setExpanded] = useState(true);
-  const technologies = useSelector(selectTechnologies);
+  const technologies = { ...techData };
 
   useEffect(() => {
     const timer = setTimeout(() => setExpanded(false), 1100);
@@ -31,6 +31,16 @@ const Projects = () => {
 
   const toggleContent = () => {
     setExpanded((prevState) => !prevState);
+  };
+
+  const toggleFilter = (tech) => {
+    setFilters((prevState) => {
+      return filters.includes(tech)
+        ? [...prevState.filter((filter) => filter !== tech)]
+        : [...prevState, tech];
+    });
+
+    console.log("Filters: ", filters);
   };
 
   const techArray = [];
@@ -43,6 +53,8 @@ const Projects = () => {
       key={tech.name}
       technology={tech}
       clickable={true}
+      selected={filters.includes(tech)}
+      onToggle={toggleFilter}
       sx={{ fontSize: "11px" }}
     />
   ));
@@ -76,7 +88,7 @@ const Projects = () => {
         </Card>
         {/* <Card sx={{ borderRadius: "8px" }}> */}
         {/* <CardContent> */}
-        <ProjectList />
+        <ProjectList filters={filters} />
         {/* </CardContent> */}
         {/* </Card> */}
       </CardContent>
