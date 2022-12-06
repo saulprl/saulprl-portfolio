@@ -60,11 +60,9 @@ function App() {
   useEffect(() => {
     if (pathname.includes("home")) {
       dispatch(setHeaderTitle({ title: "Home" }));
-    }
-    if (pathname.includes("projects")) {
+    } else if (pathname.includes("projects")) {
       dispatch(setHeaderTitle({ title: "Projects" }));
-    }
-    if (pathname.includes("courses")) {
+    } else if (pathname.includes("courses")) {
       dispatch(setHeaderTitle({ title: "Courses" }));
     }
   }, [dispatch, pathname]);
