@@ -38,6 +38,15 @@ const Projects = () => {
     techArray.push(technologies[key]);
   }
 
+  const techChips = techArray.map((tech) => (
+    <TechnologyChip
+      key={tech.name}
+      technology={tech}
+      clickable={true}
+      sx={{ fontSize: "11px" }}
+    />
+  ));
+
   return (
     <>
       <CardContent>
@@ -58,17 +67,10 @@ const Projects = () => {
             }
             sx={{ background: theme.palette.secondary.main, color: "white" }}
           />
-          <Collapse in={expanded}>
+          <Collapse in={expanded} unmountOnExit easing="easeInOut">
             <Divider />
             <CardContent sx={{ background: theme.palette.background.default }}>
-              {techArray.map((tech) => (
-                <TechnologyChip
-                  key={tech.name}
-                  technology={tech}
-                  clickable={true}
-                  sx={{ fontSize: "11px" }}
-                />
-              ))}
+              {techChips}
             </CardContent>
           </Collapse>
         </Card>
