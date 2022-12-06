@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { TransitionGroup } from "react-transition-group";
 
 import {
   Box,
@@ -14,12 +15,33 @@ import {
 
 import TechnologyChip from "../technologies/TechnologyChip";
 
-import { selectProjects } from "../../store/projectsSlice";
-import { TransitionGroup } from "react-transition-group";
+import { projects as projectsData } from "../../data/data";
 
-const ProjectList = () => {
+const ProjectList = (props) => {
   const theme = useTheme();
-  const projects = useSelector(selectProjects);
+  const [projects, setProjects] = useState([...projectsData]);
+
+  useEffect(() => {
+    setProjects([...projectsData]);
+
+    setProjects((prevState) => {
+      return prevState.filter((project) => {
+        return props.filters.every((filter) => {
+          for (const lang of project.language) {
+            if (lang.name === filter.name) {
+              return true;
+            }
+          }
+          for (const database of project.database) {
+            if (database.name === filter.name) {
+              return true;
+            }
+          }
+          return false;
+        });
+      });
+    });
+  }, [props.filters]);
 
   const projectItemBackground =
     theme.palette.mode === "dark"
@@ -76,6 +98,7 @@ const ProjectList = () => {
                     key={index}
                     technology={lang}
                     clickable={false}
+                    selected={props.filters.includes(lang)}
                   />
                 ))}
                 {proj.database.map((database, index) => (
@@ -83,6 +106,7 @@ const ProjectList = () => {
                     key={index}
                     technology={database}
                     clickable={false}
+                    selected={props.filters.includes(database)}
                   />
                 ))}
               </Box>
