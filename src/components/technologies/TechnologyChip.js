@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { Chip } from "@mui/material";
 
@@ -22,33 +21,19 @@ import {
 } from "react-icons/si";
 import { TbCSharp } from "react-icons/tb";
 
-import {
-  addFilter,
-  removeFilter,
-  resetProjects,
-  selectFilters,
-  selectTechnologies,
-} from "../../store/projectsSlice";
+import { technologies as techData } from "../../data/data";
 
 const TechnologyChip = (props) => {
-  const { technology, clickable, sx } = props;
+  const { technology, clickable, onToggle, selected, sx } = props;
 
-  const [selected, setSelected] = useState(false);
+  // const [selected, setSelected] = useState(props.selected);
+  const technologies = techData;
 
-  const dispatch = useDispatch();
-  const filters = useSelector(selectFilters);
-  const technologies = useSelector(selectTechnologies);
-
-  useEffect(() => {
-    if (clickable) {
-      if (selected) {
-        dispatch(addFilter({ technology: technology }));
-      } else {
-        dispatch(resetProjects());
-        dispatch(removeFilter({ technology: technology }));
-      }
-    }
-  }, [dispatch, selected, clickable, technology]);
+  // useEffect(() => {
+  //   if (clickable) {
+  //     onToggle(technology, selected);
+  //   }
+  // }, [selected, clickable, technology, onToggle]);
 
   let icon;
   switch (technology) {
@@ -107,24 +92,26 @@ const TechnologyChip = (props) => {
   }
 
   const toggleSelect = () => {
-    setSelected((prevState) => !prevState);
+    // setSelected((prevState) => !prevState);
+    onToggle(technology);
   };
 
-  const isSelected = () => {
-    if (selected) {
-      return true;
-    }
-    for (const filter of filters) {
-      if (filter.name === technology.name) {
-        return true;
-      }
-    }
-    return false;
-  };
+  // useEffect(() => {
+  //   if (onToggle) onToggle(technology, selected);
+  // }, [onToggle, technology, selected]);
+
+  // const isSelected = () => {
+  //   return selected;
+  //   // for (const filter of filters) {
+  //   //   if (filter.name === technology.name) {
+  //   //     return true;
+  //   //   }
+  //   // }
+  // };
 
   return (
     <Chip
-      color={isSelected() ? "primary" : "secondary"}
+      color={selected ? "primary" : "secondary"}
       label={technology.name}
       icon={icon}
       sx={{ margin: "4px", pl: "4px", ...sx }}
