@@ -17,7 +17,7 @@ import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import CoursesPage from "./pages/CoursesPage";
 
-import "./App.css";
+import classes from "./App.module.css";
 
 function App() {
   const location = useLocation();
@@ -80,7 +80,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
+      <CssBaseline enableColorScheme />
       {!isMobile && <MainDrawer onToggleTheme={toggleThemeHandler} />}
       {isMobile && <MainAppBar onToggleTheme={toggleThemeHandler} />}
       <MainContent title={headerTitle}>
@@ -88,7 +88,12 @@ function App() {
           <CSSTransition
             key={location.pathname}
             timeout={250}
-            classNames="fade"
+            classNames={{
+              enter: classes["fade-enter"],
+              enterActive: classes["fade-enter-active"],
+              exit: classes["fade-exit"],
+              exitActive: classes["fade-exit-active"],
+            }}
           >
             <Switch location={location}>
               <Route path="/" exact render={() => <Redirect to="/home" />} />
