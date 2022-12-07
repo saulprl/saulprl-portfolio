@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import {
   Box,
   Card,
   CardActionArea,
   CardContent,
-  Collapse,
   List,
   Typography,
   useMediaQuery,
@@ -17,6 +16,8 @@ import {
 import TechnologyChip from "../technologies/TechnologyChip";
 
 import { projects as projectsData } from "../../data/data";
+
+import classes from "./Projects.module.css";
 
 const ProjectList = (props) => {
   const theme = useTheme();
@@ -52,22 +53,26 @@ const ProjectList = (props) => {
       : theme.palette.background.default;
 
   const projectList = projects.map((proj) => (
-    <Collapse
+    <CSSTransition
       key={proj.id}
-      timeout={isMobile ? 650 : 450}
-      unmountOnExit
+      timeout={isMobile ? 450 : 300}
       mountOnEnter={false}
-      easing="easeInOut"
+      classNames={{
+        enter: classes["fade-enter"],
+        enterActive: classes["fade-enter-active"],
+        exit: classes["fade-exit"],
+        exitActive: classes["fade-exit-active"],
+      }}
     >
       <Card
         key={proj.id}
         sx={{
           background: projectItemBackground,
-          // maxHeight: "136px",
           borderRadius: "8px",
           border: theme.palette.border.default,
           mb: "8px",
         }}
+        className={classes["project-item"]}
       >
         <CardActionArea LinkComponent={Link} to={`/projects/${proj.id}`}>
           <CardContent>
@@ -118,7 +123,7 @@ const ProjectList = (props) => {
           </CardContent>
         </CardActionArea>
       </Card>
-    </Collapse>
+    </CSSTransition>
   ));
 
   return (

@@ -1,22 +1,24 @@
 import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
+  Box,
   Card,
   CardContent,
   CardHeader,
-  Collapse,
   Divider,
   IconButton,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import ProjectList from "./ProjectList";
 import TechnologyChip from "../technologies/TechnologyChip";
 
 import { technologies as techData } from "../../data/data";
+
+import classes from "./Projects.module.css";
 
 const Projects = () => {
   const theme = useTheme();
@@ -25,12 +27,6 @@ const Projects = () => {
   const technologies = { ...techData };
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  // useEffect(() => {
-  // const timer = setTimeout(() => setExpanded(false), 1100);
-
-  // return () => clearTimeout(timer);
-  // }, [setExpanded]);
 
   const toggleContent = () => {
     setExpanded((prevState) => !prevState);
@@ -75,22 +71,37 @@ const Projects = () => {
             titleTypographyProps={{ variant: "h6" }}
             action={
               <IconButton onClick={toggleContent} sx={{ color: "white" }}>
-                {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                <ExpandLessIcon
+                  sx={{
+                    transition: "transform 400ms",
+                    transform: `rotate(${expanded ? -180 : 0}deg)`,
+                  }}
+                />
               </IconButton>
             }
             sx={{ background: theme.palette.secondary.main, color: "white" }}
           />
-          <Collapse
+          <CSSTransition
             in={expanded}
-            timeout={isMobile ? 850 : 500}
-            unmountOnExit
-            easing="easeInOut"
+            timeout={isMobile ? 450 : 300}
+            mountOnEnter={true}
+            unmountOnExit={true}
+            classNames={{
+              enter: classes["fade-enter"],
+              enterActive: classes["fade-enter-active"],
+              exit: classes["fade-exit"],
+              exitActive: classes["fade-exit-active"],
+            }}
           >
-            <Divider />
-            <CardContent sx={{ background: theme.palette.background.default }}>
-              {techChips}
-            </CardContent>
-          </Collapse>
+            <Box className={classes["filters-content"]}>
+              <Divider />
+              <CardContent
+                sx={{ background: theme.palette.background.default }}
+              >
+                {techChips}
+              </CardContent>
+            </Box>
+          </CSSTransition>
         </Card>
         <ProjectList filters={filters} />
       </CardContent>
