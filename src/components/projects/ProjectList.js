@@ -10,6 +10,7 @@ import {
   Collapse,
   List,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 
@@ -20,6 +21,8 @@ import { projects as projectsData } from "../../data/data";
 const ProjectList = (props) => {
   const theme = useTheme();
   const [projects, setProjects] = useState([...projectsData]);
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     setProjects([...projectsData]);
@@ -51,8 +54,9 @@ const ProjectList = (props) => {
   const projectList = projects.map((proj) => (
     <Collapse
       key={proj.id}
-      timeout={{ enter: 450, exit: 350 }}
+      timeout={isMobile ? 650 : 450}
       unmountOnExit
+      mountOnEnter={false}
       easing="easeInOut"
     >
       <Card

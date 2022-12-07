@@ -7,6 +7,7 @@ import {
   Collapse,
   Divider,
   IconButton,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -22,6 +23,8 @@ const Projects = () => {
   const [filters, setFilters] = useState([]);
   const [expanded, setExpanded] = useState(true);
   const technologies = { ...techData };
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   // useEffect(() => {
   // const timer = setTimeout(() => setExpanded(false), 1100);
@@ -77,7 +80,12 @@ const Projects = () => {
             }
             sx={{ background: theme.palette.secondary.main, color: "white" }}
           />
-          <Collapse in={expanded} unmountOnExit easing="easeInOut">
+          <Collapse
+            in={expanded}
+            timeout={isMobile ? 850 : 500}
+            unmountOnExit
+            easing="easeInOut"
+          >
             <Divider />
             <CardContent sx={{ background: theme.palette.background.default }}>
               {techChips}
