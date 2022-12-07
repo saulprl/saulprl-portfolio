@@ -13,6 +13,50 @@ import saulprlPic from "../../assets/pic-squared.jpg";
 const Presentation = () => {
   const theme = useTheme();
 
+  const avatar = (
+    <Avatar
+      alt="Saúl Ramos"
+      src={saulprlPic}
+      sx={{
+        width: { xs: "170px", sm: "220px" },
+        height: { xs: "170px", sm: "220px" },
+        margin: "auto",
+        mt: "8px",
+        mr: "8px",
+        border: theme.palette.border.default,
+      }}
+    />
+  );
+
+  const socials = (
+    <>
+      <Tooltip title="Twitter">
+        <IconButton
+          aria-label="twitter.com"
+          onClick={() => window.open("https://twitter.com/saulpxrl", "_blank")}
+        >
+          <Twitter />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="GitHub">
+        <IconButton
+          aria-label="github.com"
+          onClick={() => window.open("https://github.com/saulprl", "_blank")}
+        >
+          <GitHub />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Email">
+        <IconButton
+          aria-label="e-mail"
+          onClick={() => window.open("mailto:saulramos378@gmail.com", "_blank")}
+        >
+          <Email />
+        </IconButton>
+      </Tooltip>
+    </>
+  );
+
   return (
     <>
       <Typography variant="h5" textAlign="center">
@@ -26,20 +70,7 @@ const Presentation = () => {
           alignItems: { xs: "center" },
         }}
       >
-        <Box>
-          <Avatar
-            alt="Saúl Ramos"
-            src={saulprlPic}
-            sx={{
-              width: { xs: "170px", sm: "220px" },
-              height: { xs: "170px", sm: "220px" },
-              margin: "auto",
-              mt: "8px",
-              mr: "8px",
-              border: theme.palette.border.default,
-            }}
-          />
-        </Box>
+        <Box>{avatar}</Box>
         <Box
           component="div"
           sx={{
@@ -56,36 +87,7 @@ const Presentation = () => {
             border: theme.palette.border.default,
           }}
         >
-          <Tooltip title="Twitter">
-            <IconButton
-              aria-label="twitter.com"
-              onClick={() =>
-                window.open("https://twitter.com/saulpxrl", "_blank")
-              }
-            >
-              <Twitter />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="GitHub">
-            <IconButton
-              aria-label="github.com"
-              onClick={() =>
-                window.open("https://github.com/saulprl", "_blank")
-              }
-            >
-              <GitHub />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Email">
-            <IconButton
-              aria-label="e-mail"
-              onClick={() =>
-                window.open("mailto:saulramos378@gmail.com", "_blank")
-              }
-            >
-              <Email />
-            </IconButton>
-          </Tooltip>
+          {socials}
         </Box>
       </Box>
     </>
