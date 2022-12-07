@@ -1,4 +1,5 @@
-import { Close } from "@mui/icons-material";
+import { useHistory, useParams } from "react-router-dom";
+
 import {
   Box,
   IconButton,
@@ -7,16 +8,15 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import { selectCourses } from "../../store/coursesSlice";
+import { Close } from "@mui/icons-material";
+
+import { courses } from "../../data/data";
 
 const CertificateImage = () => {
   const theme = useTheme();
   const { id } = useParams();
   const history = useHistory();
 
-  const courses = useSelector(selectCourses);
   const selectedCourse = courses.find((crs) => crs.id === id);
   const imageSource = selectedCourse.certificate;
 

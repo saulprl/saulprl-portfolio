@@ -1,47 +1,39 @@
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-import {
-  Box,
-  IconButton,
-  Modal,
-  Tooltip,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, IconButton, Modal, Tooltip, useTheme } from "@mui/material";
 import { ArrowBack, ArrowForward, Close } from "@mui/icons-material";
 
-import { selectProjects } from "../../store/projectsSlice";
+const ProjectImage = (props) => {
+  const { images } = props;
 
-const ProjectImage = () => {
   const theme = useTheme();
-  const { id, imgIndex } = useParams();
+  const { id } = useParams();
   const history = useHistory();
+  const [index, setIndex] = useState(0);
 
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  // const projects = useSelector(selectProjects);
 
-  const projects = useSelector(selectProjects);
-
-  const selectedProject = projects.find((proj) => proj.id === id);
-  const imageSource = selectedProject.images[imgIndex];
+  // const selectedProject = projects.find((proj) => proj.id === id);
+  const imageSource = images[index];
 
   const closeModalHandler = (event) => {
-    history.push(`/projects/${id}`);
+    history.replace(`/projects/${id}`);
   };
 
   const previousImageHandler = (event) => {
-    if (+imgIndex === 0) {
-      history.push(`/projects/${id}/${selectedProject.images.length - 1}`);
+    if (index === 0) {
+      setIndex(images.length - 1);
     } else {
-      history.push(`/projects/${id}/${+imgIndex - 1}`);
+      setIndex((prevIndex) => prevIndex - 1);
     }
   };
 
   const nextImageHandler = (event) => {
-    if (selectedProject.images[+imgIndex + 1]) {
-      history.push(`/projects/${id}/${+imgIndex + 1}`);
+    if (index + 1 === images.length) {
+      setIndex(0);
     } else {
-      history.push(`/projects/${id}/0`);
+      setIndex((prevIndex) => prevIndex + 1);
     }
   };
 
@@ -108,17 +100,17 @@ const ProjectImage = () => {
         </Tooltip>
         <Box
           sx={{
-            // position: "absolute",
-            // top: "50%",
-            // left: "50%",
-            // transform: "translate(-50%, -50%)",
-            height: isMobile ? "80vh" : "100vh",
-            width: isMobile ? "auto" : "auto",
-            // pt: { xs: "10%", sm: 0 },
-            // px: { xs: 0, sm: "5%" },
+            display: "flex",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            // height: isMobile ? "80vh" : "100vh",
+            // width: isMobile ? "auto" : "auto",
+            padding: "8px",
           }}
         >
-          <Box
+          {/* <Box
             sx={{
               position: "absolute",
               top: "50%",
@@ -127,17 +119,17 @@ const ProjectImage = () => {
               display: "flex",
               padding: "8px",
             }}
-          >
-            <img
-              src={imageSource}
-              alt={`Screenshot ${imgIndex + 1}`}
-              style={{
-                margin: "auto",
-                maxHeight: "100vh",
-                maxWidth: "100vw",
-              }}
-            />
-          </Box>
+          > */}
+          <img
+            src={imageSource}
+            alt={`Screenshot ${index + 1}`}
+            style={{
+              margin: "auto",
+              maxHeight: "100vh",
+              maxWidth: "100vw",
+            }}
+          />
+          {/* </Box> */}
         </Box>
       </div>
     </Modal>

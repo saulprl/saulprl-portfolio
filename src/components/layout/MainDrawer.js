@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
 import {
@@ -24,14 +23,13 @@ import FolderIcon from "@mui/icons-material/Folder";
 import HomeIcon from "@mui/icons-material/Home";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
-import { toggleTheme } from "../../store/uiSlice";
-
 import Presentation from "./Presentation";
 
 const MainDrawer = (props) => {
+  const { onClose, onToggleTheme } = props;
+
   const theme = useTheme();
   const history = useHistory();
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -41,7 +39,7 @@ const MainDrawer = (props) => {
       label: "Home",
       icon: <HomeIcon />,
       onClick: () => {
-        if (isMobile) props.onClose();
+        if (isMobile) onClose();
         history.push("/home");
       },
     },
@@ -49,7 +47,7 @@ const MainDrawer = (props) => {
       label: "Projects",
       icon: <FolderIcon />,
       onClick: () => {
-        if (isMobile) props.onClose();
+        if (isMobile) onClose();
         history.push("/projects");
       },
     },
@@ -57,7 +55,7 @@ const MainDrawer = (props) => {
       label: "Courses",
       icon: <ClassIcon />,
       onClick: () => {
-        if (isMobile) props.onClose();
+        if (isMobile) onClose();
         history.push("/courses");
       },
     },
@@ -79,10 +77,7 @@ const MainDrawer = (props) => {
             title={theme.palette.mode === "dark" ? "Light mode" : "Dark mode"}
             placement="right"
           >
-            <IconButton
-              onClick={() => dispatch(toggleTheme())}
-              sx={{ color: "white" }}
-            >
+            <IconButton onClick={onToggleTheme} sx={{ color: "white" }}>
               {theme.palette.mode === "dark" ? (
                 <LightModeIcon />
               ) : (
@@ -102,7 +97,7 @@ const MainDrawer = (props) => {
             <ListItemText primary="Dark mode" />
             <Switch
               edge="end"
-              onChange={() => dispatch(toggleTheme())}
+              onChange={onToggleTheme}
               checked={theme.palette.mode === "dark"}
             />
           </ListItem>

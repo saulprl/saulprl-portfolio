@@ -1,10 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import {
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+  useMediaQuery,
+} from "@mui/material";
 
-import { selectThemeMode, setHeaderTitle } from "./store/uiSlice";
 import MainDrawer from "./components/layout/MainDrawer";
 
 import MainContent from "./components/layout/MainContent";
@@ -15,9 +18,9 @@ import CoursesPage from "./pages/CoursesPage";
 import MainAppBar from "./components/layout/MainAppBar";
 
 function App() {
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const themeMode = useSelector(selectThemeMode);
+  const [themeMode, setThemeMode] = useState("dark");
+  const [headerTitle, setHeaderTitle] = useState("Home");
 
   const theme = createTheme({
     palette: {
@@ -57,22 +60,28 @@ function App() {
     },
   });
 
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const toggleThemeHandler = () => {
+    setThemeMode((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
   useEffect(() => {
-    if (pathname.includes("home")) {
-      dispatch(setHeaderTitle({ title: "Home" }));
-    } else if (pathname.includes("projects")) {
-      dispatch(setHeaderTitle({ title: "Projects" }));
-    } else if (pathname.includes("courses")) {
-      dispatch(setHeaderTitle({ title: "Courses" }));
+    if (pathname.startsWith("/home")) {
+      setHeaderTitle("Home");
+    } else if (pathname.startsWith("/projects")) {
+      setHeaderTitle("Projects");
+    } else if (pathname.startsWith("/courses")) {
+      setHeaderTitle("Courses");
     }
-  }, [dispatch, pathname]);
+  }, [setHeaderTitle, pathname]);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <MainDrawer />
-      <MainAppBar />
-      <MainContent>
+      {!isMobile && <MainDrawer onToggleTheme={toggleThemeHandler} />}
+      {isMobile && <MainAppBar onToggleTheme={toggleThemeHandler} />}
+      <MainContent title={headerTitle}>
         <Switch>
           <Route path="/" exact render={() => <Redirect to="/home" />} />
           <Route path="/home" exact render={() => <HomePage />} />

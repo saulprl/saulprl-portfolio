@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Link, Route, useHistory, useParams } from "react-router-dom";
 
 import {
@@ -20,15 +19,15 @@ import { ArrowBack, ExpandLess, ExpandMore } from "@mui/icons-material";
 
 import { FaGithubSquare } from "react-icons/fa";
 
-import { selectProjects } from "../../store/projectsSlice";
-import TechnologyChip from "../technologies/TechnologyChip";
 import ProjectImage from "./ProjectImage";
+import TechnologyChip from "../technologies/TechnologyChip";
+
+import { projects } from "../../data/data";
 
 const ProjectDetails = (props) => {
   const theme = useTheme();
   const { id } = useParams();
   const history = useHistory();
-  const projects = useSelector(selectProjects);
   const [expanded, setExpanded] = useState(false);
 
   const selectedProject = projects.find((proj) => proj.id === id);
@@ -172,7 +171,7 @@ const ProjectDetails = (props) => {
               <Collapse in={expanded} collapsedSize={130}>
                 <ImageList cols={3}>
                   {selectedProject.images.map((item, index) => (
-                    <Link key={index} to={`/projects/${id}/${index}`}>
+                    <Link key={index} to={`/projects/${id}/images`}>
                       <ImageListItem>
                         <img
                           src={item}
@@ -195,9 +194,9 @@ const ProjectDetails = (props) => {
         </Card>
       </CardContent>
       <Route
-        path="/projects/:id/:imgIndex"
+        path="/projects/:id/images"
         exact
-        render={() => <ProjectImage />}
+        render={() => <ProjectImage images={selectedProject.images} />}
       />
     </>
   );

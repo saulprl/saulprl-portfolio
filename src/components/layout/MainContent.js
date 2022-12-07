@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 import {
   Box,
   Card,
@@ -11,11 +9,9 @@ import {
 } from "@mui/material";
 import { Article } from "@mui/icons-material";
 
-import { selectHeaderTitle } from "../../store/uiSlice";
-
 const MainContent = (props) => {
   const theme = useTheme();
-  const headerTitle = useSelector(selectHeaderTitle);
+  const { title } = props;
 
   const resumeClickHandler = (event) => {
     window.open(
@@ -47,7 +43,7 @@ const MainContent = (props) => {
         }}
       >
         <CardHeader
-          title={headerTitle}
+          title={title}
           titleTypographyProps={{ fontWeight: "bold" }}
           action={
             <Tooltip title="Resume" placement="left">

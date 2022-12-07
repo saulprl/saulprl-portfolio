@@ -1,9 +1,11 @@
-import { Menu } from "@mui/icons-material";
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import { useState } from "react";
+
+import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import { Menu } from "@mui/icons-material";
+
 import MainDrawer from "./MainDrawer";
 
-const MainAppBar = () => {
+const MainAppBar = (props) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const openDrawerHandler = () => {
@@ -16,7 +18,11 @@ const MainAppBar = () => {
 
   return (
     <>
-      <MainDrawer open={drawerOpen} onClose={closeDrawerHandler} />
+      <MainDrawer
+        open={drawerOpen}
+        onClose={closeDrawerHandler}
+        onToggleTheme={props.onToggleTheme}
+      />
       <AppBar
         position="sticky"
         color="primary"
