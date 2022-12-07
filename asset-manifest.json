@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/saulprl-portfolio/static/css/main.e6c13ad2.css",
-    "main.js": "/saulprl-portfolio/static/js/main.b5b70a60.js",
+    "main.js": "/saulprl-portfolio/static/js/main.b968efa9.js",
     "static/js/787.66611e13.chunk.js": "/saulprl-portfolio/static/js/787.66611e13.chunk.js",
     "static/media/pic-squared.jpg": "/saulprl-portfolio/static/media/pic-squared.a1ce3282a8e3473c753c.jpg",
     "static/media/Flutter-course-certificate.jpg": "/saulprl-portfolio/static/media/Flutter-course-certificate.f2323c13d6fc4346cb1f.jpg",
@@ -68,11 +68,11 @@
     "static/media/starting-page.png": "/saulprl-portfolio/static/media/starting-page.5971720e0f5a8dfb10dc.png",
     "index.html": "/saulprl-portfolio/index.html",
     "main.e6c13ad2.css.map": "/saulprl-portfolio/static/css/main.e6c13ad2.css.map",
-    "main.b5b70a60.js.map": "/saulprl-portfolio/static/js/main.b5b70a60.js.map",
+    "main.b968efa9.js.map": "/saulprl-portfolio/static/js/main.b968efa9.js.map",
     "787.66611e13.chunk.js.map": "/saulprl-portfolio/static/js/787.66611e13.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.b5b70a60.js"
+    "static/js/main.b968efa9.js"
   ]
 }
