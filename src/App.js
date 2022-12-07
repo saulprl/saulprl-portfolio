@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import {
   createTheme,
@@ -8,17 +9,18 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-import MainDrawer from "./components/layout/MainDrawer";
-
+import MainAppBar from "./components/layout/MainAppBar";
 import MainContent from "./components/layout/MainContent";
+import MainDrawer from "./components/layout/MainDrawer";
 
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import CoursesPage from "./pages/CoursesPage";
-import MainAppBar from "./components/layout/MainAppBar";
+
+import "./App.css";
 
 function App() {
-  const { pathname } = useLocation();
+  const location = useLocation();
   const [themeMode, setThemeMode] = useState("dark");
   const [headerTitle, setHeaderTitle] = useState("Home");
 
@@ -67,14 +69,14 @@ function App() {
   };
 
   useEffect(() => {
-    if (pathname.startsWith("/home")) {
+    if (location.pathname.startsWith("/home")) {
       setHeaderTitle("Home");
-    } else if (pathname.startsWith("/projects")) {
+    } else if (location.pathname.startsWith("/projects")) {
       setHeaderTitle("Projects");
-    } else if (pathname.startsWith("/courses")) {
+    } else if (location.pathname.startsWith("/courses")) {
       setHeaderTitle("Courses");
     }
-  }, [setHeaderTitle, pathname]);
+  }, [setHeaderTitle, location.pathname]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -82,12 +84,20 @@ function App() {
       {!isMobile && <MainDrawer onToggleTheme={toggleThemeHandler} />}
       {isMobile && <MainAppBar onToggleTheme={toggleThemeHandler} />}
       <MainContent title={headerTitle}>
-        <Switch>
-          <Route path="/" exact render={() => <Redirect to="/home" />} />
-          <Route path="/home" exact render={() => <HomePage />} />
-          <Route path="/projects" render={() => <ProjectsPage />} />
-          <Route path="/courses" render={() => <CoursesPage />} />
-        </Switch>
+        <TransitionGroup>
+          <CSSTransition
+            key={location.pathname}
+            timeout={250}
+            classNames="fade"
+          >
+            <Switch location={location}>
+              <Route path="/" exact render={() => <Redirect to="/home" />} />
+              <Route path="/home" exact render={() => <HomePage />} />
+              <Route path="/projects" render={() => <ProjectsPage />} />
+              <Route path="/courses" render={() => <CoursesPage />} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
       </MainContent>
     </ThemeProvider>
   );
