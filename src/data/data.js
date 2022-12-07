@@ -1,5 +1,23 @@
 import { v1 as uuid } from "uuid";
 
+import {
+  SiAngular,
+  SiDart,
+  SiFiles,
+  SiFirebase,
+  SiFlutter,
+  SiJava,
+  SiJavascript,
+  SiMicrosoftsqlserver,
+  SiMongodb,
+  SiMysql,
+  SiPostgresql,
+  SiSqlite,
+  SiTypescript,
+} from "react-icons/si";
+import { FaNodeJs, FaReact } from "react-icons/fa";
+import { TbCSharp } from "react-icons/tb";
+
 import meanCert from "../assets/certificates/MEAN-course-certificate.jpg";
 import flutterCert from "../assets/certificates/Flutter-course-certificate.jpg";
 
@@ -85,23 +103,43 @@ const coursePlatforms = {
 };
 
 export const technologies = {
-  flutter: { name: "Flutter", type: techTypes.framework },
-  dart: { name: "Dart", type: techTypes.language },
-  react: { name: "React", type: techTypes.framework },
-  javascript: { name: "JavaScript", type: techTypes.language },
-  angular: { name: "Angular", type: techTypes.framework },
-  typescript: { name: "TypeScript", type: techTypes.language },
-  java: { name: "Java", type: techTypes.language },
-  csharp: { name: "C#", type: techTypes.language },
-  javafx: { name: "JavaFX", type: techTypes.framework },
-  nodejs: { name: "Node.js", type: techTypes.framework },
-  sqlite: { name: "SQLite", type: techTypes.database },
-  mongo: { name: "MongoDB", type: techTypes.database },
-  postgres: { name: "PostgreSQL", type: techTypes.database },
-  mysql: { name: "MySQL", type: techTypes.database },
-  sqlserver: { name: "SQL Server", type: techTypes.database },
-  firebase: { name: "Firebase", type: techTypes.database },
-  files: { name: "Files", type: techTypes.database },
+  flutter: { name: "Flutter", type: techTypes.framework, icon: <SiFlutter /> },
+  dart: { name: "Dart", type: techTypes.language, icon: <SiDart /> },
+  react: { name: "React", type: techTypes.framework, icon: <FaReact /> },
+  javascript: {
+    name: "JavaScript",
+    type: techTypes.language,
+    icon: <SiJavascript />,
+  },
+  angular: { name: "Angular", type: techTypes.framework, icon: <SiAngular /> },
+  typescript: {
+    name: "TypeScript",
+    type: techTypes.language,
+    icon: <SiTypescript />,
+  },
+  java: { name: "Java", type: techTypes.language, icon: <SiJava /> },
+  csharp: { name: "C#", type: techTypes.language, icon: <TbCSharp /> },
+  javafx: { name: "JavaFX", type: techTypes.framework, icon: <SiJava /> },
+  nodejs: { name: "Node.js", type: techTypes.framework, icon: <FaNodeJs /> },
+  sqlite: { name: "SQLite", type: techTypes.database, icon: <SiSqlite /> },
+  mongo: { name: "MongoDB", type: techTypes.database, icon: <SiMongodb /> },
+  postgres: {
+    name: "PostgreSQL",
+    type: techTypes.database,
+    icon: <SiPostgresql />,
+  },
+  mysql: { name: "MySQL", type: techTypes.database, icon: <SiMysql /> },
+  sqlserver: {
+    name: "SQL Server",
+    type: techTypes.database,
+    icon: <SiMicrosoftsqlserver />,
+  },
+  firebase: {
+    name: "Firebase",
+    type: techTypes.database,
+    icon: <SiFirebase />,
+  },
+  files: { name: "Files", type: techTypes.database, icon: <SiFiles /> },
 };
 
 export const projects = [

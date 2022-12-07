@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   Card,
@@ -23,11 +23,11 @@ const Projects = () => {
   const [expanded, setExpanded] = useState(true);
   const technologies = { ...techData };
 
-  useEffect(() => {
-    const timer = setTimeout(() => setExpanded(false), 1100);
+  // useEffect(() => {
+  // const timer = setTimeout(() => setExpanded(false), 1100);
 
-    return () => clearTimeout(timer);
-  }, [setExpanded]);
+  // return () => clearTimeout(timer);
+  // }, [setExpanded]);
 
   const toggleContent = () => {
     setExpanded((prevState) => !prevState);
@@ -39,8 +39,6 @@ const Projects = () => {
         ? [...prevState.filter((filter) => filter !== tech)]
         : [...prevState, tech];
     });
-
-    console.log("Filters: ", filters);
   };
 
   const techArray = [];
@@ -86,11 +84,7 @@ const Projects = () => {
             </CardContent>
           </Collapse>
         </Card>
-        {/* <Card sx={{ borderRadius: "8px" }}> */}
-        {/* <CardContent> */}
         <ProjectList filters={filters} />
-        {/* </CardContent> */}
-        {/* </Card> */}
       </CardContent>
     </>
   );
