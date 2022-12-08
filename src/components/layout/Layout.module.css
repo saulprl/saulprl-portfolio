@@ -1,0 +1,39 @@
+.exit-icon {
+  animation: rotateOut 350ms ease-in;
+  will-change: transform;
+}
+
+.enter-icon {
+  animation: rotateIn 500ms cubic-bezier(.07, .49, .61, 1.3);
+  will-change: transform;
+}
+
+@keyframes liftUp {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(-150%);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: scale(135%) rotate(-30deg);
+  }
+
+  to {
+    transform: scale(100%) rotate(0deg);
+  }
+}
+
+@keyframes rotateOut {
+  from {
+    transform: scale(100%) rotate(0deg);
+  }
+
+  to {
+    transform: scale(135%) rotate(30deg);
+  }
+}
