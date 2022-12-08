@@ -25,6 +25,8 @@ import {
 } from "react-icons/si";
 import { TbCSharp } from "react-icons/tb";
 
+import classes from "./Page.module.css";
+
 const HomePage = () => {
   const theme = useTheme();
 
@@ -197,7 +199,7 @@ const HomePage = () => {
   );
 
   return (
-    <>
+    <Box className={classes["page-content"]}>
       <CardContent>
         <Box component="div" sx={{ mb: "1rem" }}>
           <Typography variant="h6">About me</Typography>
@@ -239,7 +241,7 @@ const HomePage = () => {
           </Card>
         </Box>
       </CardContent>
-    </>
+    </Box>
   );
 };
 

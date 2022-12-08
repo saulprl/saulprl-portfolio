@@ -1,13 +1,21 @@
 import { Route } from "react-router-dom";
-import CertificateImage from "../components/courses/CertificateImage";
+
+import { Box } from "@mui/material";
+
 import Courses from "../components/courses/Courses";
+
+import classes from "./Page.module.css";
 
 const CoursesPage = () => {
   return (
-    <>
-      <Route path="/courses" render={() => <Courses />} />
-      <Route path="/courses/:id" exact render={() => <CertificateImage />} />
-    </>
+    <Route
+      path="/courses"
+      render={() => (
+        <Box className={classes["page-content"]}>
+          <Courses />
+        </Box>
+      )}
+    />
   );
 };
 
