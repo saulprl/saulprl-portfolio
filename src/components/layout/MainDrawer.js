@@ -25,6 +25,8 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 
 import Presentation from "./Presentation";
 
+import classes from "./Layout.module.css";
+
 const MainDrawer = (props) => {
   const { onClose, onToggleTheme } = props;
 
@@ -35,6 +37,13 @@ const MainDrawer = (props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#2C2C2C";
+
+  const toggleThemeHandler = () => {
+    setTimeout(() => onToggleTheme(), 250);
+    const themeIcon = document.getElementById("theme-icon");
+    themeIcon.classList.remove(classes["enter-icon"]);
+    themeIcon.classList.add(classes["exit-icon"]);
+  };
 
   const items = [
     {
@@ -79,11 +88,17 @@ const MainDrawer = (props) => {
             title={theme.palette.mode === "dark" ? "Light mode" : "Dark mode"}
             placement="right"
           >
-            <IconButton onClick={onToggleTheme} sx={{ color: "white" }}>
+            <IconButton onClick={toggleThemeHandler} sx={{ color: "white" }}>
               {theme.palette.mode === "dark" ? (
-                <LightModeIcon />
+                <LightModeIcon
+                  id="theme-icon"
+                  className={classes["enter-icon"]}
+                />
               ) : (
-                <DarkModeIcon />
+                <DarkModeIcon
+                  id="theme-icon"
+                  className={classes["enter-icon"]}
+                />
               )}
             </IconButton>
           </Tooltip>
@@ -93,10 +108,16 @@ const MainDrawer = (props) => {
         <Presentation />
         <List>
           <ListItem sx={{ display: { sm: "none" } }}>
-            <ListItemIcon sx={{ color: iconColor }}>
-              <DarkModeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dark mode" />
+            <ListItemButton
+              disableGutters
+              disableRipple
+              onClick={onToggleTheme}
+            >
+              <ListItemIcon sx={{ color: iconColor }}>
+                <DarkModeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dark mode" />
+            </ListItemButton>
             <Switch
               edge="end"
               onChange={onToggleTheme}
@@ -116,6 +137,13 @@ const MainDrawer = (props) => {
                     theme.palette.mode === "dark"
                       ? theme.palette.primary.dark
                       : theme.palette.primary.light,
+                  transition: "background-color 250ms linear",
+                },
+                "&.Mui-selected:hover": {
+                  backgroundColor: "rgba(233, 30, 99, 0.65)",
+                },
+                "&:hover": {
+                  backgroundColor: "rgba(125, 161, 160, 0.65)",
                 },
               }}
             >
@@ -147,7 +175,7 @@ const MainDrawer = (props) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: { xs: "100%", sm: "280px" },
-              transition: "all 250ms linear",
+              transition: "background-color 250ms linear",
             },
           }}
         >
