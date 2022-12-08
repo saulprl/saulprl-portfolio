@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import {
   Box,
   Card,
+  CardActionArea,
   CardContent,
   CardHeader,
   Divider,
@@ -59,26 +60,23 @@ const ProjectDetails = () => {
       <ImageList cols={3} rowHeight={81.5} sx={{ height: "131px" }}>
         <ImageListItem>
           <img
-            onClick={openCarouselHandler}
             src={selectedProject.images[0]}
             alt={`${selectedProject.name} 1`}
-            style={{ maxHeight: "131px", cursor: "pointer" }}
+            style={{ maxHeight: "131px" }}
           />
         </ImageListItem>
         <ImageListItem>
           <img
-            onClick={openCarouselHandler}
             src={selectedProject.images[1]}
             alt={`${selectedProject.name} 2`}
-            style={{ maxHeight: "131px", cursor: "pointer" }}
+            style={{ maxHeight: "131px" }}
           />
         </ImageListItem>
         <ImageListItem>
           <img
-            onClick={openCarouselHandler}
             src={selectedProject.images[2]}
             alt={`${selectedProject.name} 3`}
-            style={{ maxHeight: "131px", cursor: "pointer" }}
+            style={{ maxHeight: "131px" }}
           />
         </ImageListItem>
       </ImageList>
@@ -184,7 +182,12 @@ const ProjectDetails = () => {
                 </IconButton>
               </Tooltip>
             </Box>
-            {images}
+            <CardActionArea
+              LinkComponent="button"
+              onClick={openCarouselHandler}
+            >
+              {images}
+            </CardActionArea>
           </CardContent>
         </Card>
       </CardContent>
