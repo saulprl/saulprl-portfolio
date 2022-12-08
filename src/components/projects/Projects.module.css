@@ -19,7 +19,7 @@
 }
 
 .filters-content {
-  animation: dropIn 375ms ease-out, fadeIn 1000ms;
+  animation: dropIn 375ms ease-out, fadeIn 850ms;
   will-change: transform;
 }
 
