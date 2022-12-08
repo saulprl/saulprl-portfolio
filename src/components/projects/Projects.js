@@ -64,6 +64,7 @@ const Projects = () => {
             borderRadius: "8px",
             border: theme.palette.border.default,
             mb: "8px",
+            transition: "border 250ms linear",
           }}
         >
           <CardHeader
@@ -96,7 +97,10 @@ const Projects = () => {
             <Box className={classes["filters-content"]}>
               <Divider />
               <CardContent
-                sx={{ background: theme.palette.background.default }}
+                sx={{
+                  background: theme.palette.background.default,
+                  transition: "background-color 250ms linear",
+                }}
               >
                 {techChips}
               </CardContent>

@@ -42,7 +42,7 @@ const MainContent = (props) => {
           borderRadius: "16px",
           border: theme.palette.border.default,
           width: { xs: "100%", md: "530px" },
-          transition: "all 250ms linear",
+          transition: "background-color 250ms linear, border 250ms linear",
         }}
       >
         <CardHeader

@@ -48,6 +48,7 @@ const Courses = () => {
         borderRadius: "8px",
         border: theme.palette.border.default,
         mb: "8px",
+        transition: "background-color 250ms linear, border 250ms linear",
       }}
     >
       <CardActionArea LinkComponent="a" href={crs.link} target="_blank">
