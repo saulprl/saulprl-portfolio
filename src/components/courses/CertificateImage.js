@@ -1,5 +1,3 @@
-import { useHistory, useParams } from "react-router-dom";
-
 import {
   Box,
   IconButton,
@@ -10,20 +8,14 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
-import { courses } from "../../data/data";
-
-const CertificateImage = () => {
+const CertificateImage = (props) => {
+  const { open, onClose, image } = props;
   const theme = useTheme();
-  const { id } = useParams();
-  const history = useHistory();
-
-  const selectedCourse = courses.find((crs) => crs.id === id);
-  const imageSource = selectedCourse.certificate;
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const closeModalHandler = (event) => {
-    history.push("/courses");
+    onClose();
   };
 
   const keyPressHandler = (event) => {
@@ -33,7 +25,7 @@ const CertificateImage = () => {
   };
 
   return (
-    <Modal open={true} onClose={closeModalHandler}>
+    <Modal open={open} onClose={closeModalHandler}>
       <div onKeyDown={keyPressHandler}>
         <Tooltip title="Close" placement="bottom">
           <IconButton
@@ -56,14 +48,11 @@ const CertificateImage = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            // height: "95vh",
-            // pt: { xs: "50%", sm: "0" },
           }}
         >
           <img
-            src={imageSource}
-            alt={`${selectedCourse.name} completion certificate`}
-            // height={isMobile ? "60%" : "100%"}
+            src={image}
+            alt={"Completion certificate"}
             style={{
               margin: "auto",
               transform: isMobile ? "rotate(90deg)" : "none",

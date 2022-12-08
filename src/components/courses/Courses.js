@@ -1,31 +1,38 @@
-import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 import { Badge, CheckCircle, Pending } from "@mui/icons-material";
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
   CardActions,
   CardContent,
   Chip,
   Divider,
-  IconButton,
-  Tooltip,
   Typography,
   useTheme,
 } from "@mui/material";
+
+import CertificateImage from "./CertificateImage";
 
 import { courses as coursesData } from "../../data/data";
 
 const Courses = () => {
   const theme = useTheme();
-  const history = useHistory();
+  const [showCertificate, setShowCertificate] = useState(false);
+  const [certificate, setCertificate] = useState(null);
+
   const courses = [...coursesData];
 
-  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#2C2C2C";
+  const showCertificateHandler = (cert) => {
+    setCertificate(cert);
+    setShowCertificate(true);
+  };
 
-  const showCertificateHandler = (courseId) => {
-    history.push(`/courses/${courseId}`);
+  const closeCertificateHandler = () => {
+    setShowCertificate(false);
+    setCertificate(null);
   };
 
   const cardBackground =
@@ -73,22 +80,33 @@ const Courses = () => {
       {crs.certificate && (
         <>
           <Divider />
-          <CardActions sx={{ justifyContent: "flex-end" }}>
-            <Tooltip title="Show certificate" placement="left">
-              <IconButton
-                onClick={showCertificateHandler.bind(null, crs.id)}
-                sx={{ color: iconColor }}
-              >
-                <Badge />
-              </IconButton>
-            </Tooltip>
+          <CardActions
+            sx={{ justifyContent: { xs: "center", sm: "flex-end" } }}
+          >
+            <Button
+              variant="contained"
+              onClick={showCertificateHandler.bind(null, crs.certificate)}
+              startIcon={<Badge />}
+              sx={{ textTransform: "none" }}
+            >
+              Show certificate
+            </Button>
           </CardActions>
         </>
       )}
     </Card>
   ));
 
-  return <CardContent>{coursesList}</CardContent>;
+  return (
+    <>
+      <CardContent>{coursesList}</CardContent>
+      <CertificateImage
+        open={showCertificate}
+        onClose={closeCertificateHandler}
+        image={certificate}
+      />
+    </>
+  );
 };
 
 export default Courses;

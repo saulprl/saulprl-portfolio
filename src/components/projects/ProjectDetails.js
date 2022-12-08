@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Link, Route, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import {
   Box,
   Card,
   CardContent,
   CardHeader,
-  Collapse,
   Divider,
   IconButton,
   ImageList,
@@ -15,7 +14,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { ArrowBack, ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ArrowBack, Collections } from "@mui/icons-material";
 
 import { FaGithubSquare } from "react-icons/fa";
 
@@ -24,11 +23,11 @@ import TechnologyChip from "../technologies/TechnologyChip";
 
 import { projects } from "../../data/data";
 
-const ProjectDetails = (props) => {
+const ProjectDetails = () => {
   const theme = useTheme();
   const { id } = useParams();
   const history = useHistory();
-  const [expanded, setExpanded] = useState(false);
+  const [openCarousel, setOpenCarousel] = useState(false);
 
   const selectedProject = projects.find((proj) => proj.id === id);
 
@@ -40,8 +39,12 @@ const ProjectDetails = (props) => {
     window.open(selectedProject.repo, "_blank", "noopener,noreferrer");
   };
 
-  const toggleGallery = () => {
-    setExpanded((prevState) => !prevState);
+  const openCarouselHandler = () => {
+    setOpenCarousel(true);
+  };
+
+  const closeCarouselHandler = () => {
+    setOpenCarousel(false);
   };
 
   const cardBackground =
@@ -49,6 +52,38 @@ const ProjectDetails = (props) => {
       ? "default"
       : theme.palette.background.default;
   const iconColor = theme.palette.mode === "dark" ? "default" : "#2C2C2C";
+
+  let images = <Typography variant="body1">No images found.</Typography>;
+  if (selectedProject.images.length > 0) {
+    images = (
+      <ImageList cols={3} rowHeight={81.5} sx={{ height: "131px" }}>
+        <ImageListItem>
+          <img
+            onClick={openCarouselHandler}
+            src={selectedProject.images[0]}
+            alt={`${selectedProject.name} 1`}
+            style={{ maxHeight: "131px", cursor: "pointer" }}
+          />
+        </ImageListItem>
+        <ImageListItem>
+          <img
+            onClick={openCarouselHandler}
+            src={selectedProject.images[1]}
+            alt={`${selectedProject.name} 2`}
+            style={{ maxHeight: "131px", cursor: "pointer" }}
+          />
+        </ImageListItem>
+        <ImageListItem>
+          <img
+            onClick={openCarouselHandler}
+            src={selectedProject.images[2]}
+            alt={`${selectedProject.name} 3`}
+            style={{ maxHeight: "131px", cursor: "pointer" }}
+          />
+        </ImageListItem>
+      </ImageList>
+    );
+  }
 
   return (
     <>
@@ -138,39 +173,24 @@ const ProjectDetails = (props) => {
               }}
             >
               <Typography variant="h6">Images</Typography>
-              <IconButton onClick={toggleGallery} sx={{ color: iconColor }}>
-                {expanded ? <ExpandLess /> : <ExpandMore />}
-              </IconButton>
+              <Tooltip title="Open gallery" placement="left">
+                <IconButton
+                  onClick={openCarouselHandler}
+                  disabled={selectedProject.images.length === 0}
+                  sx={{ color: iconColor }}
+                >
+                  <Collections />
+                </IconButton>
+              </Tooltip>
             </Box>
-            {selectedProject.images.length > 0 && (
-              <Collapse in={expanded} collapsedSize={130}>
-                <ImageList cols={3}>
-                  {selectedProject.images.map((item, index) => (
-                    <Link key={index} to={`/projects/${id}/images`}>
-                      <ImageListItem>
-                        <img
-                          src={item}
-                          alt={`Screenshot ${index + 1}`}
-                          loading="lazy"
-                        />
-                      </ImageListItem>
-                    </Link>
-                  ))}
-                </ImageList>
-              </Collapse>
-            )}
-            {selectedProject.images.length === 0 && (
-              <Typography variant="body1" textAlign="center">
-                No images found.
-              </Typography>
-            )}
+            {images}
           </CardContent>
         </Card>
       </CardContent>
-      <Route
-        path="/projects/:id/images"
-        exact
-        render={() => <ProjectImage images={selectedProject.images} />}
+      <ProjectImage
+        open={openCarousel}
+        onClose={closeCarouselHandler}
+        images={selectedProject.images}
       />
     </>
   );

@@ -1,24 +1,18 @@
 import { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
 
 import { Box, IconButton, Modal, Tooltip, useTheme } from "@mui/material";
 import { ArrowBack, ArrowForward, Close } from "@mui/icons-material";
 
 const ProjectImage = (props) => {
-  const { images } = props;
+  const { open, onClose, images } = props;
 
   const theme = useTheme();
-  const { id } = useParams();
-  const history = useHistory();
   const [index, setIndex] = useState(0);
 
-  // const projects = useSelector(selectProjects);
-
-  // const selectedProject = projects.find((proj) => proj.id === id);
   const imageSource = images[index];
 
   const closeModalHandler = (event) => {
-    history.replace(`/projects/${id}`);
+    onClose();
   };
 
   const previousImageHandler = (event) => {
@@ -52,11 +46,11 @@ const ProjectImage = (props) => {
   const iconColor = theme.palette.mode === "dark" ? "default" : "white";
 
   return (
-    <Modal open={true} onClose={closeModalHandler}>
+    <Modal open={open} onClose={onClose}>
       <div onKeyDown={keyPressHandler}>
         <Tooltip title="Close" placement="bottom">
           <IconButton
-            onClick={closeModalHandler}
+            onClick={onClose}
             sx={{
               color: iconColor,
               position: "fixed",
@@ -105,21 +99,9 @@ const ProjectImage = (props) => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            // height: isMobile ? "80vh" : "100vh",
-            // width: isMobile ? "auto" : "auto",
             padding: "8px",
           }}
         >
-          {/* <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              display: "flex",
-              padding: "8px",
-            }}
-          > */}
           <img
             src={imageSource}
             alt={`Screenshot ${index + 1}`}
@@ -129,7 +111,6 @@ const ProjectImage = (props) => {
               maxWidth: "100vw",
             }}
           />
-          {/* </Box> */}
         </Box>
       </div>
     </Modal>
