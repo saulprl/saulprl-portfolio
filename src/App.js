@@ -81,8 +81,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
-      {!isMobile && <MainDrawer onToggleTheme={toggleThemeHandler} />}
-      {isMobile && <MainAppBar onToggleTheme={toggleThemeHandler} />}
+      {isMobile ? (
+        <MainAppBar onToggleTheme={toggleThemeHandler} />
+      ) : (
+        <MainDrawer onToggleTheme={toggleThemeHandler} />
+      )}
       <MainContent title={headerTitle}>
         <TransitionGroup>
           <CSSTransition
