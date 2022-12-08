@@ -13,6 +13,8 @@ import saulprlPic from "../../assets/pic-squared.jpg";
 const Presentation = () => {
   const theme = useTheme();
 
+  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#2C2C2C";
+
   const avatar = (
     <Avatar
       alt="Saúl Ramos"
@@ -24,6 +26,7 @@ const Presentation = () => {
         mt: "8px",
         mr: "8px",
         border: theme.palette.border.default,
+        transition: "border 250ms linear",
       }}
     />
   );
@@ -34,6 +37,7 @@ const Presentation = () => {
         <IconButton
           aria-label="twitter.com"
           onClick={() => window.open("https://twitter.com/saulpxrl", "_blank")}
+          sx={{ color: iconColor }}
         >
           <Twitter />
         </IconButton>
@@ -42,6 +46,7 @@ const Presentation = () => {
         <IconButton
           aria-label="github.com"
           onClick={() => window.open("https://github.com/saulprl", "_blank")}
+          sx={{ color: iconColor }}
         >
           <GitHub />
         </IconButton>
@@ -50,6 +55,7 @@ const Presentation = () => {
         <IconButton
           aria-label="e-mail"
           onClick={() => window.open("mailto:saulramos378@gmail.com", "_blank")}
+          sx={{ color: iconColor }}
         >
           <Email />
         </IconButton>
@@ -85,6 +91,7 @@ const Presentation = () => {
             pb: "2px",
             borderRadius: "6px",
             border: theme.palette.border.default,
+            transition: "all 250ms linear",
           }}
         >
           {socials}

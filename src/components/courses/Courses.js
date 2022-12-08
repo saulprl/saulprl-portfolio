@@ -22,7 +22,7 @@ const Courses = () => {
   const history = useHistory();
   const courses = [...coursesData];
 
-  // const courses = useSelector(selectCourses);
+  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#2C2C2C";
 
   const showCertificateHandler = (courseId) => {
     history.push(`/courses/${courseId}`);
@@ -75,7 +75,10 @@ const Courses = () => {
           <Divider />
           <CardActions sx={{ justifyContent: "flex-end" }}>
             <Tooltip title="Show certificate" placement="left">
-              <IconButton onClick={showCertificateHandler.bind(null, crs.id)}>
+              <IconButton
+                onClick={showCertificateHandler.bind(null, crs.id)}
+                sx={{ color: iconColor }}
+              >
                 <Badge />
               </IconButton>
             </Tooltip>

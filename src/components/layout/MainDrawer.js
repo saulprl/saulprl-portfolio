@@ -34,6 +34,8 @@ const MainDrawer = (props) => {
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#2C2C2C";
+
   const items = [
     {
       label: "Home",
@@ -91,7 +93,7 @@ const MainDrawer = (props) => {
         <Presentation />
         <List>
           <ListItem sx={{ display: { sm: "none" } }}>
-            <ListItemIcon>
+            <ListItemIcon sx={{ color: iconColor }}>
               <DarkModeIcon />
             </ListItemIcon>
             <ListItemText primary="Dark mode" />
@@ -104,7 +106,7 @@ const MainDrawer = (props) => {
           {items.map((item, index) => (
             <ListItemButton
               key={index}
-              selected={pathname.includes(item.label.toLowerCase())}
+              selected={pathname.startsWith(`/${item.label.toLowerCase()}`)}
               onClick={item.onClick.bind(null, index)}
               sx={{
                 borderRadius: "16px",
@@ -117,7 +119,7 @@ const MainDrawer = (props) => {
                 },
               }}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{ color: iconColor }}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} />
             </ListItemButton>
           ))}
@@ -145,6 +147,7 @@ const MainDrawer = (props) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: { xs: "100%", sm: "280px" },
+              transition: "all 250ms linear",
             },
           }}
         >

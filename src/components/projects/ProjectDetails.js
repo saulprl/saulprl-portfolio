@@ -48,7 +48,7 @@ const ProjectDetails = (props) => {
     theme.palette.mode === "dark"
       ? "default"
       : theme.palette.background.default;
-  const iconColor = theme.palette.mode === "dark" ? "default" : "#2b2b2b";
+  const iconColor = theme.palette.mode === "dark" ? "default" : "#2C2C2C";
 
   return (
     <>
@@ -64,39 +64,19 @@ const ProjectDetails = (props) => {
           <CardHeader
             avatar={
               <Tooltip title="Back" enterDelay={400}>
-                <IconButton onClick={backClickHandler}>
+                <IconButton
+                  onClick={backClickHandler}
+                  sx={{ color: iconColor }}
+                >
                   <ArrowBack />
                 </IconButton>
               </Tooltip>
             }
             title={selectedProject.name}
             titleTypographyProps={{ variant: "h6", fontWeight: "bold" }}
-            // action={
-            //   <Tooltip title="GitHub repository" placement="left">
-            //     <IconButton
-            //       color="secondary"
-            //       onClick={repoClickHandler}
-            //       sx={{ mt: "4px" }}
-            //     >
-            //       <FaGithubSquare />
-            //     </IconButton>
-            //   </Tooltip>
-            // }
           />
-          {/* <CardMedia
-            component="img"
-            height={300}
-            image={selectedProject.images[0]}
-          /> */}
           <Divider />
           <CardContent>
-            {/* <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            > */}
             <Typography variant="body1" sx={{ mb: "4px" }}>
               {selectedProject.description}
             </Typography>
@@ -146,11 +126,6 @@ const ProjectDetails = (props) => {
                     <FaGithubSquare />
                   </IconButton>
                 </Tooltip>
-                {/* <Tooltip title="Gallery">
-                  <IconButton>
-                    <Collections />
-                  </IconButton>
-                </Tooltip> */}
               </Box>
             </Box>
             <Box
@@ -163,7 +138,7 @@ const ProjectDetails = (props) => {
               }}
             >
               <Typography variant="h6">Images</Typography>
-              <IconButton onClick={toggleGallery}>
+              <IconButton onClick={toggleGallery} sx={{ color: iconColor }}>
                 {expanded ? <ExpandLess /> : <ExpandMore />}
               </IconButton>
             </Box>
@@ -189,7 +164,6 @@ const ProjectDetails = (props) => {
                 No images found.
               </Typography>
             )}
-            {/* </Box> */}
           </CardContent>
         </Card>
       </CardContent>

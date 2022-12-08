@@ -13,6 +13,8 @@ const MainContent = (props) => {
   const theme = useTheme();
   const { title } = props;
 
+  const iconColor = theme.palette.mode === "dark" ? "#FFFFFF" : "#2C2C2C";
+
   const resumeClickHandler = (event) => {
     window.open(
       "https://drive.google.com/file/d/1CUI2A35QdO5em1i3ycHzgtu3hm2R57su/view?usp=sharing",
@@ -40,6 +42,7 @@ const MainContent = (props) => {
           borderRadius: "16px",
           border: theme.palette.border.default,
           width: { xs: "100%", md: "530px" },
+          transition: "all 250ms linear",
         }}
       >
         <CardHeader
@@ -47,7 +50,10 @@ const MainContent = (props) => {
           titleTypographyProps={{ fontWeight: "bold" }}
           action={
             <Tooltip title="Resume" placement="left">
-              <IconButton onClick={resumeClickHandler}>
+              <IconButton
+                onClick={resumeClickHandler}
+                sx={{ color: iconColor }}
+              >
                 <Article />
               </IconButton>
             </Tooltip>
