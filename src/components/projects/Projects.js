@@ -23,10 +23,10 @@ import classes from "./Projects.module.css";
 const Projects = () => {
   const theme = useTheme();
   const [filters, setFilters] = useState([]);
-  const [expanded, setExpanded] = useState(true);
   const technologies = { ...techData };
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [expanded, setExpanded] = useState(!isMobile);
 
   const toggleContent = () => {
     setExpanded((prevState) => !prevState);
