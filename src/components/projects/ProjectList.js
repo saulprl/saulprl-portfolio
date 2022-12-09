@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  List,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { List, useMediaQuery, useTheme } from "@mui/material";
 
-import TechnologyChip from "../technologies/TechnologyChip";
+import ProjectItem from "./ProjectItem";
 
 import { projects as projectsData } from "../../data/data";
 
@@ -47,85 +37,26 @@ const ProjectList = (props) => {
     });
   }, [props.filters]);
 
-  const projectItemBackground =
-    theme.palette.mode === "dark"
-      ? "default"
-      : theme.palette.background.default;
-
-  const projectList = projects.map((proj) => (
-    <CSSTransition
-      key={proj.id}
-      timeout={isMobile ? 450 : 300}
-      mountOnEnter={false}
-      classNames={{
-        enter: classes["fade-enter"],
-        enterActive: classes["fade-enter-active"],
-        exit: classes["fade-exit"],
-        exitActive: classes["fade-exit-active"],
-      }}
-    >
-      <Card
-        key={proj.id}
-        sx={{
-          background: projectItemBackground,
-          borderRadius: "8px",
-          border: theme.palette.border.default,
-          mb: "8px",
-          transition: "background-color 250ms linear, border 250ms linear",
-        }}
-        className={classes["project-item"]}
-      >
-        <CardActionArea LinkComponent={Link} to={`/projects/${proj.id}`}>
-          <CardContent>
-            <Box
-              component="div"
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", sm: "row" },
-                justifyContent: "space-between",
-              }}
-            >
-              <Box>
-                <Typography variant="h6" fontWeight="bold">
-                  {proj.name}
-                </Typography>
-                <Typography variant="body2">{`${
-                  proj.description.length >= 166
-                    ? `${proj.description.substring(0, 166)}...`
-                    : proj.description
-                }`}</Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-start",
-                  alignItems: { sm: "flex-end" },
-                }}
-              >
-                {proj.language.map((lang, index) => (
-                  <TechnologyChip
-                    key={index}
-                    technology={lang}
-                    clickable={false}
-                    selected={props.filters.includes(lang)}
-                  />
-                ))}
-                {proj.database.map((database, index) => (
-                  <TechnologyChip
-                    key={index}
-                    technology={database}
-                    clickable={false}
-                    selected={props.filters.includes(database)}
-                  />
-                ))}
-              </Box>
-            </Box>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </CSSTransition>
-  ));
+  const projectList = useMemo(
+    () =>
+      projects.map((proj) => (
+        <CSSTransition
+          key={proj.id}
+          timeout={isMobile ? 450 : 300}
+          mountOnEnter={true}
+          unmountOnExit={true}
+          classNames={{
+            enter: classes["fade-enter"],
+            enterActive: classes["fade-enter-active"],
+            exit: classes["fade-exit"],
+            exitActive: classes["fade-exit-active"],
+          }}
+        >
+          <ProjectItem project={proj} filters={props.filters} />
+        </CSSTransition>
+      )),
+    [projects, props.filters, isMobile]
+  );
 
   return (
     <List disablePadding>
