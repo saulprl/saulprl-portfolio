@@ -1,14 +1,9 @@
-import {
-  Avatar,
-  Box,
-  IconButton,
-  Tooltip,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import { Email, GitHub, Twitter } from "@mui/icons-material";
+import { lazy, memo, Suspense } from "react";
+import { Avatar, Box, Skeleton, Typography, useTheme } from "@mui/material";
 
 import saulprlPic from "../../assets/pic-squared.jpg";
+
+const Socials = lazy(() => import("./Socials"));
 
 const Presentation = () => {
   const theme = useTheme();
@@ -19,6 +14,7 @@ const Presentation = () => {
     <Avatar
       alt="Saúl Ramos"
       src={saulprlPic}
+      imgProps={{ loading: "lazy" }}
       sx={{
         width: { xs: "170px", sm: "220px" },
         height: { xs: "170px", sm: "220px" },
@@ -29,47 +25,6 @@ const Presentation = () => {
         transition: "border 250ms linear",
       }}
     />
-  );
-
-  const socials = (
-    <>
-      <Tooltip title="Twitter">
-        <IconButton
-          aria-label="twitter.com"
-          onClick={() => window.open("https://twitter.com/saulpxrl", "_blank")}
-          sx={{
-            color: iconColor,
-            "&.MuiIconButton-root:hover": { color: theme.palette.info.main },
-          }}
-        >
-          <Twitter sx={{ transition: "color 275ms linear" }} />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="GitHub">
-        <IconButton
-          aria-label="github.com"
-          onClick={() => window.open("https://github.com/saulprl", "_blank")}
-          sx={{
-            color: iconColor,
-            "&.MuiIconButton-root:hover": { color: theme.palette.info.main },
-          }}
-        >
-          <GitHub sx={{ transition: "color 275ms linear" }} />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Email">
-        <IconButton
-          aria-label="e-mail"
-          onClick={() => window.open("mailto:saulramos378@gmail.com", "_blank")}
-          sx={{
-            color: iconColor,
-            "&.MuiIconButton-root:hover": { color: theme.palette.info.main },
-          }}
-        >
-          <Email sx={{ transition: "color 275ms linear" }} />
-        </IconButton>
-      </Tooltip>
-    </>
   );
 
   return (
@@ -103,11 +58,27 @@ const Presentation = () => {
             transition: "all 250ms linear",
           }}
         >
-          {socials}
+          <Suspense
+            fallback={
+              <Skeleton
+                variant="rounded"
+                animation="wave"
+                sx={{
+                  height: { xs: "130px", sm: "40px" },
+                  width: { xs: "40px", sm: "130px" },
+                }}
+              />
+            }
+          >
+            <Socials
+              iconColor={iconColor}
+              hoverColor={theme.palette.info.main}
+            />
+          </Suspense>
         </Box>
       </Box>
     </>
   );
 };
 
-export default Presentation;
+export default memo(Presentation);
