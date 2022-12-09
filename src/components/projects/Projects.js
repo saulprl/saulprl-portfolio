@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 import { CardContent } from "@mui/material";
 
@@ -9,9 +9,7 @@ import { technologies as techData } from "../../data/data";
 
 const Projects = () => {
   const [filters, setFilters] = useState([]);
-  const technologies = useMemo(() => {
-    return { ...techData };
-  }, []);
+  const technologies = { ...techData };
 
   const toggleFilter = useCallback(
     (tech) =>
@@ -37,4 +35,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default memo(Projects);

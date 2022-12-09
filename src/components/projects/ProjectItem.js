@@ -1,3 +1,4 @@
+import { lazy, memo, Suspense } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -5,13 +6,14 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  Skeleton,
   Typography,
   useTheme,
 } from "@mui/material";
 
-import TechnologyChip from "../technologies/TechnologyChip";
-
 import classes from "./Projects.module.css";
+
+const TechnologyChip = lazy(() => import("../technologies/TechnologyChip"));
 
 const ProjectItem = (props) => {
   const proj = props.project;
@@ -63,20 +65,42 @@ const ProjectItem = (props) => {
               }}
             >
               {proj.language.map((lang, index) => (
-                <TechnologyChip
+                <Suspense
                   key={index}
-                  technology={lang}
-                  clickable={false}
-                  selected={props.filters.includes(lang)}
-                />
+                  fallback={
+                    <Skeleton
+                      variant="rounded"
+                      animation="wave"
+                      height={45}
+                      width={135}
+                    />
+                  }
+                >
+                  <TechnologyChip
+                    technology={lang}
+                    clickable={false}
+                    selected={props.filters.includes(lang)}
+                  />
+                </Suspense>
               ))}
               {proj.database.map((database, index) => (
-                <TechnologyChip
+                <Suspense
                   key={index}
-                  technology={database}
-                  clickable={false}
-                  selected={props.filters.includes(database)}
-                />
+                  fallback={
+                    <Skeleton
+                      variant="rounded"
+                      animation="wave"
+                      height={45}
+                      width={135}
+                    />
+                  }
+                >
+                  <TechnologyChip
+                    technology={database}
+                    clickable={false}
+                    selected={props.filters.includes(database)}
+                  />
+                </Suspense>
               ))}
             </Box>
           </Box>
@@ -86,4 +110,4 @@ const ProjectItem = (props) => {
   );
 };
 
-export default ProjectItem;
+export default memo(ProjectItem);

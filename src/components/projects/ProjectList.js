@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import { List, useMediaQuery, useTheme } from "@mui/material";
-
-import ProjectItem from "./ProjectItem";
+import { List, Skeleton, useMediaQuery, useTheme } from "@mui/material";
 
 import { projects as projectsData } from "../../data/data";
 
 import classes from "./Projects.module.css";
+
+const ProjectItem = lazy(() => import("./ProjectItem"));
 
 const ProjectList = (props) => {
   const theme = useTheme();
@@ -52,7 +52,19 @@ const ProjectList = (props) => {
             exitActive: classes["fade-exit-active"],
           }}
         >
-          <ProjectItem project={proj} filters={props.filters} />
+          <Suspense
+            fallback={
+              <Skeleton
+                variant="rounded"
+                animation="wave"
+                height={75}
+                // width={}
+                sx={{ mx: "auto", mb: "8px" }}
+              />
+            }
+          >
+            <ProjectItem project={proj} filters={props.filters} />
+          </Suspense>
         </CSSTransition>
       )),
     [projects, props.filters, isMobile]

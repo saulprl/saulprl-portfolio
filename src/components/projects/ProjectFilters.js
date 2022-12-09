@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, memo, lazy, Suspense } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import {
@@ -8,14 +8,15 @@ import {
   CardHeader,
   Divider,
   IconButton,
+  Skeleton,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { ExpandLess } from "@mui/icons-material";
 
-import TechnologyChip from "../technologies/TechnologyChip";
-
 import classes from "./Projects.module.css";
+
+const TechnologyChip = lazy(() => import("../technologies/TechnologyChip"));
 
 const ProjectFilters = (props) => {
   const { filters, technologies, onToggleFilter } = props;
@@ -39,14 +40,18 @@ const ProjectFilters = (props) => {
   const techChips = useMemo(
     () =>
       techArray.map((tech) => (
-        <TechnologyChip
+        <Suspense
           key={tech.name}
-          technology={tech}
-          clickable={true}
-          selected={filters.includes(tech)}
-          onToggle={onToggleFilter}
-          sx={{ fontSize: "11px" }}
-        />
+          fallBack={<Skeleton variant="rounded" width={75} height={65} />}
+        >
+          <TechnologyChip
+            technology={tech}
+            clickable={true}
+            selected={filters.includes(tech)}
+            onToggle={onToggleFilter}
+            sx={{ fontSize: "11px" }}
+          />
+        </Suspense>
       )),
     [onToggleFilter, techArray, filters]
   );
@@ -103,4 +108,4 @@ const ProjectFilters = (props) => {
   );
 };
 
-export default ProjectFilters;
+export default memo(ProjectFilters);
