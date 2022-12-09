@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Route } from "react-router-dom";
 
 import { Box } from "@mui/material";
@@ -31,4 +32,4 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default memo(ProjectsPage);

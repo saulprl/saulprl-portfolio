@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import Courses from "../components/courses/Courses";
 
 import classes from "./Page.module.css";
+import { memo } from "react";
 
 const CoursesPage = () => {
   return (
@@ -19,4 +20,4 @@ const CoursesPage = () => {
   );
 };
 
-export default CoursesPage;
+export default memo(CoursesPage);
