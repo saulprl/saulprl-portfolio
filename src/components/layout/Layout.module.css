@@ -9,7 +9,7 @@
 }
 
 .bump-icon {
-  animation: bump 350ms ease-out;
+  animation: bump 300ms cubic-bezier(.26, -0.33, .5, 1);
   will-change: transform;
 }
 

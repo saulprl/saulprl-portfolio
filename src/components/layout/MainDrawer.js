@@ -56,13 +56,13 @@ const MainDrawer = (props) => {
       icon: <HomeIcon id="home-icon" />,
       onClick: () => {
         const homeIcon = document.getElementById("home-icon");
-        homeIcon.classList.add(classes["bump-icon"]);
+        homeIcon.classList.remove(classes["bump-icon"]);
+        setTimeout(() => homeIcon.classList.add(classes["bump-icon"]), 25);
 
         pushRoute("/home");
         setTimeout(() => {
           if (isMobile) onClose();
-          homeIcon.classList.remove(classes["bump-icon"]);
-        }, 350);
+        }, 325);
       },
     },
     {
@@ -71,12 +71,12 @@ const MainDrawer = (props) => {
       onClick: () => {
         const projectsIcon = document.getElementById("projects-icon");
         projectsIcon.classList.remove(classes["bump-icon"]);
+        setTimeout(() => projectsIcon.classList.add(classes["bump-icon"]), 25);
 
         pushRoute("/projects");
         setTimeout(() => {
           if (isMobile) onClose();
-          projectsIcon.classList.add(classes["bump-icon"]);
-        }, 350);
+        }, 325);
       },
     },
     {
@@ -84,13 +84,13 @@ const MainDrawer = (props) => {
       icon: <ClassIcon id="courses-icon" />,
       onClick: () => {
         const coursesIcon = document.getElementById("courses-icon");
-        coursesIcon.classList.add(classes["bump-icon"]);
+        coursesIcon.classList.remove(classes["bump-icon"]);
+        setTimeout(() => coursesIcon.classList.add(classes["bump-icon"]), 25);
 
         pushRoute("/courses");
         setTimeout(() => {
           if (isMobile) onClose();
-          coursesIcon.classList.remove(classes["bump-icon"]);
-        }, 350);
+        }, 325);
       },
     },
   ];
