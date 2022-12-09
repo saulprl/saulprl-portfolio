@@ -45,29 +45,52 @@ const MainDrawer = (props) => {
     themeIcon.classList.add(classes["exit-icon"]);
   };
 
+  const pushRoute = (path) => {
+    // if (isMobile) onClose();
+    history.push(path);
+  };
+
   const items = [
     {
       label: "Home",
-      icon: <HomeIcon />,
+      icon: <HomeIcon id="home-icon" />,
       onClick: () => {
-        if (isMobile) onClose();
-        history.push("/home");
+        const homeIcon = document.getElementById("home-icon");
+        homeIcon.classList.add(classes["bump-icon"]);
+
+        pushRoute("/home");
+        setTimeout(() => {
+          if (isMobile) onClose();
+          homeIcon.classList.remove(classes["bump-icon"]);
+        }, 350);
       },
     },
     {
       label: "Projects",
-      icon: <FolderIcon />,
+      icon: <FolderIcon id="projects-icon" />,
       onClick: () => {
-        if (isMobile) onClose();
-        history.push("/projects");
+        const projectsIcon = document.getElementById("projects-icon");
+        projectsIcon.classList.remove(classes["bump-icon"]);
+
+        pushRoute("/projects");
+        setTimeout(() => {
+          if (isMobile) onClose();
+          projectsIcon.classList.add(classes["bump-icon"]);
+        }, 350);
       },
     },
     {
       label: "Courses",
-      icon: <ClassIcon />,
+      icon: <ClassIcon id="courses-icon" />,
       onClick: () => {
-        if (isMobile) onClose();
-        history.push("/courses");
+        const coursesIcon = document.getElementById("courses-icon");
+        coursesIcon.classList.add(classes["bump-icon"]);
+
+        pushRoute("/courses");
+        setTimeout(() => {
+          if (isMobile) onClose();
+          coursesIcon.classList.remove(classes["bump-icon"]);
+        }, 350);
       },
     },
   ];
