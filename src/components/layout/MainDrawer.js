@@ -1,3 +1,4 @@
+import { memo, useCallback, useMemo } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import {
@@ -45,55 +46,64 @@ const MainDrawer = (props) => {
     themeIcon.classList.add(classes["exit-icon"]);
   };
 
-  const pushRoute = (path) => {
-    // if (isMobile) onClose();
-    history.push(path);
-  };
-
-  const items = [
-    {
-      label: "Home",
-      icon: <HomeIcon id="home-icon" />,
-      onClick: () => {
-        const homeIcon = document.getElementById("home-icon");
-        homeIcon.classList.remove(classes["bump-icon"]);
-        setTimeout(() => homeIcon.classList.add(classes["bump-icon"]), 25);
-
-        pushRoute("/home");
-        setTimeout(() => {
-          if (isMobile) onClose();
-        }, 325);
-      },
+  const pushRoute = useCallback(
+    (path) => {
+      // if (isMobile) onClose();
+      history.push(path);
     },
-    {
-      label: "Projects",
-      icon: <FolderIcon id="projects-icon" />,
-      onClick: () => {
-        const projectsIcon = document.getElementById("projects-icon");
-        projectsIcon.classList.remove(classes["bump-icon"]);
-        setTimeout(() => projectsIcon.classList.add(classes["bump-icon"]), 25);
+    [history]
+  );
 
-        pushRoute("/projects");
-        setTimeout(() => {
-          if (isMobile) onClose();
-        }, 325);
-      },
-    },
-    {
-      label: "Courses",
-      icon: <ClassIcon id="courses-icon" />,
-      onClick: () => {
-        const coursesIcon = document.getElementById("courses-icon");
-        coursesIcon.classList.remove(classes["bump-icon"]);
-        setTimeout(() => coursesIcon.classList.add(classes["bump-icon"]), 25);
+  const items = useMemo(
+    () => [
+      {
+        label: "Home",
+        icon: <HomeIcon id="home-icon" />,
+        onClick: () => {
+          const homeIcon = document.getElementById("home-icon");
+          homeIcon.classList.remove(classes["bump-icon"]);
+          setTimeout(() => homeIcon.classList.add(classes["bump-icon"]), 25);
 
-        pushRoute("/courses");
-        setTimeout(() => {
-          if (isMobile) onClose();
-        }, 325);
+          pushRoute("/home");
+          setTimeout(() => {
+            if (isMobile) onClose();
+          }, 325);
+        },
       },
-    },
-  ];
+      {
+        label: "Projects",
+        icon: <FolderIcon id="projects-icon" />,
+        onClick: () => {
+          const projectsIcon = document.getElementById("projects-icon");
+          projectsIcon.classList.remove(classes["bump-icon"]);
+          setTimeout(
+            () => projectsIcon.classList.add(classes["bump-icon"]),
+            25
+          );
+
+          pushRoute("/projects");
+          setTimeout(() => {
+            if (isMobile) onClose();
+          }, 325);
+        },
+      },
+      {
+        label: "Courses",
+        icon: <ClassIcon id="courses-icon" />,
+        onClick: () => {
+          const coursesIcon = document.getElementById("courses-icon");
+          coursesIcon.classList.remove(classes["bump-icon"]);
+          setTimeout(() => coursesIcon.classList.add(classes["bump-icon"]), 25);
+
+          pushRoute("/courses");
+          setTimeout(() => {
+            if (isMobile) onClose();
+          }, 325);
+        },
+      },
+    ],
+    [pushRoute, onClose, isMobile]
+  );
 
   const drawer = (
     <>
@@ -209,4 +219,4 @@ const MainDrawer = (props) => {
   );
 };
 
-export default MainDrawer;
+export default memo(MainDrawer);
