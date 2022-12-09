@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -24,49 +24,53 @@ function App() {
   const [themeMode, setThemeMode] = useState("dark");
   const [headerTitle, setHeaderTitle] = useState("Home");
 
-  const theme = createTheme({
-    palette: {
-      mode: themeMode,
-      primary: {
-        light: "#EE588A",
-        main: "#E91E63",
-        dark: "#BA124A",
-      },
-      secondary: {
-        light: "#7DA1A0",
-        main: "#5A7D7C",
-        dark: "#455F5E",
-      },
-      success: {
-        light: "#93DD2C",
-        main: "#72B01D",
-        dark: "#507B14",
-      },
-      warning: {
-        light: "#FFD685",
-        main: "#FFC145",
-        dark: "#FFAD0A",
-      },
-      error: {
-        light: "#FE8534",
-        main: "#F46201",
-        dark: "#CB5201",
-      },
-      background: {
-        default: themeMode === "dark" ? "#282c34" : "#DEE4E7",
-      },
-      border: {
-        default:
-          themeMode === "dark" ? "1px solid #282c34" : "1px solid #c3c8cb",
-      },
-    },
-  });
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: themeMode,
+          primary: {
+            light: "#EE588A",
+            main: "#E91E63",
+            dark: "#BA124A",
+          },
+          secondary: {
+            light: "#7DA1A0",
+            main: "#5A7D7C",
+            dark: "#455F5E",
+          },
+          success: {
+            light: "#93DD2C",
+            main: "#72B01D",
+            dark: "#507B14",
+          },
+          warning: {
+            light: "#FFD685",
+            main: "#FFC145",
+            dark: "#FFAD0A",
+          },
+          error: {
+            light: "#FE8534",
+            main: "#F46201",
+            dark: "#CB5201",
+          },
+          background: {
+            default: themeMode === "dark" ? "#282c34" : "#DEE4E7",
+          },
+          border: {
+            default:
+              themeMode === "dark" ? "1px solid #282c34" : "1px solid #c3c8cb",
+          },
+        },
+      }),
+    [themeMode]
+  );
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const toggleThemeHandler = () => {
+  const toggleThemeHandler = useCallback(() => {
     setThemeMode((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
+  }, [setThemeMode]);
 
   useEffect(() => {
     if (location.pathname.startsWith("/home")) {
