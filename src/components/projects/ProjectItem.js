@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -110,4 +110,4 @@ const ProjectItem = (props) => {
   );
 };
 
-export default memo(ProjectItem);
+export default ProjectItem;

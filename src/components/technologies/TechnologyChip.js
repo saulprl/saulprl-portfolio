@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 import { Chip } from "@mui/material";
 
 const TechnologyChip = (props) => {
@@ -20,4 +18,4 @@ const TechnologyChip = (props) => {
   );
 };
 
-export default memo(TechnologyChip);
+export default TechnologyChip;

@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 import { Avatar, Card, Grid, Tooltip, useTheme } from "@mui/material";
 
 import { IconContext } from "react-icons";
@@ -203,4 +201,4 @@ const TechnologyGrid = () => {
   );
 };
 
-export default memo(TechnologyGrid);
+export default TechnologyGrid;

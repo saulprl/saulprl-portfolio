@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import {
@@ -219,4 +219,4 @@ const MainDrawer = (props) => {
   );
 };
 
-export default memo(MainDrawer);
+export default MainDrawer;

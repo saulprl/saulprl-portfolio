@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense } from "react";
+import { lazy, Suspense } from "react";
 
 import { IconButton, Skeleton, Tooltip } from "@mui/material";
 
@@ -79,4 +79,4 @@ const Socials = ({ iconColor, hoverColor }) => {
   );
 };
 
-export default memo(Socials);
+export default Socials;
