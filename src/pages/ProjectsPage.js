@@ -1,12 +1,15 @@
-import { memo } from "react";
+import { lazy, memo, Suspense } from "react";
 import { Route } from "react-router-dom";
 
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 
-import ProjectDetails from "../components/projects/ProjectDetails";
 import Projects from "../components/projects/Projects";
 
 import classes from "./Page.module.css";
+
+const ProjectDetails = lazy(() =>
+  import("../components/projects/ProjectDetails")
+);
 
 const ProjectsPage = () => {
   return (
@@ -20,14 +23,20 @@ const ProjectsPage = () => {
           </Box>
         )}
       />
-      <Route
-        path="/projects/:id"
-        render={() => (
-          <Box className={classes["page-content"]}>
-            <ProjectDetails />
-          </Box>
-        )}
-      />
+      <Suspense
+        fallback={
+          <Skeleton variant="rounded" animation="wave" sx={{ height: "75%" }} />
+        }
+      >
+        <Route
+          path="/projects/:id"
+          render={() => (
+            <Box className={classes["page-content"]}>
+              <ProjectDetails />
+            </Box>
+          )}
+        />
+      </Suspense>
     </>
   );
 };
