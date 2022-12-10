@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 import {
   Box,
   Card,
@@ -9,7 +11,7 @@ import {
 } from "@mui/material";
 import { Article } from "@mui/icons-material";
 
-const MainContent = (props) => {
+const MainContent = forwardRef((props, ref) => {
   const theme = useTheme();
   const { title } = props;
 
@@ -25,6 +27,7 @@ const MainContent = (props) => {
 
   return (
     <Box
+      ref={ref}
       sx={{
         height: { sm: "100vh" },
         width: { sm: "calc(100% - 280px)" },
@@ -64,6 +67,6 @@ const MainContent = (props) => {
       </Card>
     </Box>
   );
-};
+});
 
 export default MainContent;
