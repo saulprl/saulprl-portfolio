@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -20,9 +20,8 @@ import CoursesPage from "./pages/CoursesPage";
 import classes from "./App.module.css";
 
 function App() {
-  const location = useLocation();
+  const { location, headerTitle, contentRef } = usePathname();
   const [themeMode, setThemeMode] = useState("dark");
-  const [headerTitle, setHeaderTitle] = useState("Home");
 
   const theme = useMemo(
     () =>
@@ -72,25 +71,15 @@ function App() {
     setThemeMode((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   }, [setThemeMode]);
 
-  useEffect(() => {
-    if (location.pathname.startsWith("/home")) {
-      setHeaderTitle("Home");
-    } else if (location.pathname.startsWith("/projects")) {
-      setHeaderTitle("Projects");
-    } else if (location.pathname.startsWith("/courses")) {
-      setHeaderTitle("Courses");
-    }
-  }, [setHeaderTitle, location.pathname]);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline enableColorScheme />
       {isMobile ? (
         <MainAppBar onToggleTheme={toggleThemeHandler} />
       ) : (
-        <MainDrawer onToggleTheme={toggleThemeHandler} />
+        <MainDrawer onClose={null} onToggleTheme={toggleThemeHandler} />
       )}
-      <MainContent title={headerTitle}>
+      <MainContent ref={contentRef} title={headerTitle}>
         <TransitionGroup>
           <CSSTransition
             key={location.pathname}
@@ -114,5 +103,24 @@ function App() {
     </ThemeProvider>
   );
 }
+
+const usePathname = () => {
+  const contentRef = useRef();
+  const location = useLocation();
+  const [headerTitle, setHeaderTitle] = useState("Home");
+
+  useEffect(() => {
+    if (location.pathname.startsWith("/home")) {
+      setHeaderTitle("Home");
+    } else if (location.pathname.startsWith("/projects")) {
+      setHeaderTitle("Projects");
+    } else if (location.pathname.startsWith("/courses")) {
+      setHeaderTitle("Courses");
+    }
+    contentRef.current.scrollTop = 0;
+  }, [setHeaderTitle, location.pathname]);
+
+  return { location, headerTitle, contentRef };
+};
 
 export default App;
