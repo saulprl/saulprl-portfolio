@@ -1,4 +1,4 @@
-import { useState, useMemo, memo, lazy, Suspense } from "react";
+import { useState, useMemo, lazy, Suspense } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import {
@@ -30,31 +30,25 @@ const ProjectFilters = (props) => {
     setExpanded((prevState) => !prevState);
   };
 
-  const techArray = useMemo(() => {
+  const techChips = useMemo(() => {
     const values = [];
     Object.keys(technologies).forEach((key) => values.push(technologies[key]));
 
-    return values;
-  }, [technologies]);
-
-  const techChips = useMemo(
-    () =>
-      techArray.map((tech) => (
-        <Suspense
-          key={tech.name}
-          fallBack={<Skeleton variant="rounded" width={75} height={65} />}
-        >
-          <TechnologyChip
-            technology={tech}
-            clickable={true}
-            selected={filters.includes(tech)}
-            onToggle={onToggleFilter}
-            sx={{ fontSize: "11px" }}
-          />
-        </Suspense>
-      )),
-    [onToggleFilter, techArray, filters]
-  );
+    return values.map((tech) => (
+      <Suspense
+        key={tech.name}
+        fallBack={<Skeleton variant="rounded" width={75} height={65} />}
+      >
+        <TechnologyChip
+          technology={tech}
+          clickable={true}
+          selected={filters.includes(tech)}
+          onToggle={onToggleFilter}
+          sx={{ fontSize: "11px" }}
+        />
+      </Suspense>
+    ));
+  }, [onToggleFilter, technologies, filters]);
 
   return (
     <Card
@@ -83,7 +77,7 @@ const ProjectFilters = (props) => {
       <CSSTransition
         in={expanded}
         timeout={isMobile ? 450 : 300}
-        mountOnEnter={true}
+        mountOnEnter={false}
         unmountOnExit={true}
         classNames={{
           enter: classes["fade-enter"],
@@ -108,4 +102,4 @@ const ProjectFilters = (props) => {
   );
 };
 
-export default memo(ProjectFilters);
+export default ProjectFilters;
