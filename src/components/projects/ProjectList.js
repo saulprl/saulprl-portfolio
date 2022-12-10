@@ -11,31 +11,9 @@ const ProjectItem = lazy(() => import("./ProjectItem"));
 
 const ProjectList = (props) => {
   const theme = useTheme();
-  const [projects, setProjects] = useState([...projectsData]);
+  const projects = useProjectsData(props.filters);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  useEffect(() => {
-    setProjects([...projectsData]);
-
-    setProjects((prevState) => {
-      return prevState.filter((project) => {
-        return props.filters.every((filter) => {
-          for (const lang of project.language) {
-            if (lang.name === filter.name) {
-              return true;
-            }
-          }
-          for (const database of project.database) {
-            if (database.name === filter.name) {
-              return true;
-            }
-          }
-          return false;
-        });
-      });
-    });
-  }, [props.filters]);
 
   const projectList = useMemo(
     () =>
@@ -43,7 +21,7 @@ const ProjectList = (props) => {
         <CSSTransition
           key={proj.id}
           timeout={isMobile ? 450 : 300}
-          mountOnEnter={true}
+          mountOnEnter={false}
           unmountOnExit={true}
           classNames={{
             enter: classes["fade-enter"],
@@ -75,6 +53,32 @@ const ProjectList = (props) => {
       <TransitionGroup>{projectList}</TransitionGroup>
     </List>
   );
+};
+
+const useProjectsData = (filters) => {
+  const [projects, setProjects] = useState(projectsData);
+
+  const filterProjects = (filt) => {
+    setProjects(
+      projectsData.filter((project) =>
+        filt.every(
+          (filter) =>
+            project.database.includes(filter) ||
+            project.language.includes(filter)
+        )
+      )
+    );
+  };
+
+  useEffect(() => {
+    if (filters.length === 0) {
+      setProjects(projectsData);
+    } else {
+      filterProjects(filters);
+    }
+  }, [filters]);
+
+  return projects;
 };
 
 export default ProjectList;
