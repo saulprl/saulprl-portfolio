@@ -1,8 +1,22 @@
 {
   "files": {
-    "main.css": "/saulprl-portfolio/static/css/main.db8ea18d.css",
-    "main.js": "/saulprl-portfolio/static/js/main.706e6c59.js",
+    "main.css": "/saulprl-portfolio/static/css/main.a2e7142c.css",
+    "main.js": "/saulprl-portfolio/static/js/main.5cf4a423.js",
+    "static/js/959.11bc4b13.chunk.js": "/saulprl-portfolio/static/js/959.11bc4b13.chunk.js",
+    "static/js/555.de84401f.chunk.js": "/saulprl-portfolio/static/js/555.de84401f.chunk.js",
+    "static/js/118.3fabaeb9.chunk.js": "/saulprl-portfolio/static/js/118.3fabaeb9.chunk.js",
+    "static/css/258.e0ab8f4f.chunk.css": "/saulprl-portfolio/static/css/258.e0ab8f4f.chunk.css",
+    "static/js/258.a0ed176d.chunk.js": "/saulprl-portfolio/static/js/258.a0ed176d.chunk.js",
+    "static/css/421.e0ab8f4f.chunk.css": "/saulprl-portfolio/static/css/421.e0ab8f4f.chunk.css",
+    "static/js/421.47b6e38f.chunk.js": "/saulprl-portfolio/static/js/421.47b6e38f.chunk.js",
+    "static/js/12.11ffd521.chunk.js": "/saulprl-portfolio/static/js/12.11ffd521.chunk.js",
     "static/js/787.66611e13.chunk.js": "/saulprl-portfolio/static/js/787.66611e13.chunk.js",
+    "static/js/281.014d7e52.chunk.js": "/saulprl-portfolio/static/js/281.014d7e52.chunk.js",
+    "static/js/758.8f814e93.chunk.js": "/saulprl-portfolio/static/js/758.8f814e93.chunk.js",
+    "static/js/668.06ba59ee.chunk.js": "/saulprl-portfolio/static/js/668.06ba59ee.chunk.js",
+    "static/js/971.89fb1ab0.chunk.js": "/saulprl-portfolio/static/js/971.89fb1ab0.chunk.js",
+    "static/js/320.6237f708.chunk.js": "/saulprl-portfolio/static/js/320.6237f708.chunk.js",
+    "static/js/209.620ba0e6.chunk.js": "/saulprl-portfolio/static/js/209.620ba0e6.chunk.js",
     "static/media/pic-squared.jpg": "/saulprl-portfolio/static/media/pic-squared.a1ce3282a8e3473c753c.jpg",
     "static/media/Flutter-course-certificate.jpg": "/saulprl-portfolio/static/media/Flutter-course-certificate.f2323c13d6fc4346cb1f.jpg",
     "static/media/MEAN-course-certificate.jpg": "/saulprl-portfolio/static/media/MEAN-course-certificate.db5c970dd1871fea0aa2.jpg",
@@ -67,12 +81,26 @@
     "static/media/home-page.jpeg": "/saulprl-portfolio/static/media/home-page.9a393fa13ed1498d44a2.jpeg",
     "static/media/starting-page.png": "/saulprl-portfolio/static/media/starting-page.5971720e0f5a8dfb10dc.png",
     "index.html": "/saulprl-portfolio/index.html",
-    "main.db8ea18d.css.map": "/saulprl-portfolio/static/css/main.db8ea18d.css.map",
-    "main.706e6c59.js.map": "/saulprl-portfolio/static/js/main.706e6c59.js.map",
-    "787.66611e13.chunk.js.map": "/saulprl-portfolio/static/js/787.66611e13.chunk.js.map"
+    "main.a2e7142c.css.map": "/saulprl-portfolio/static/css/main.a2e7142c.css.map",
+    "main.5cf4a423.js.map": "/saulprl-portfolio/static/js/main.5cf4a423.js.map",
+    "959.11bc4b13.chunk.js.map": "/saulprl-portfolio/static/js/959.11bc4b13.chunk.js.map",
+    "555.de84401f.chunk.js.map": "/saulprl-portfolio/static/js/555.de84401f.chunk.js.map",
+    "118.3fabaeb9.chunk.js.map": "/saulprl-portfolio/static/js/118.3fabaeb9.chunk.js.map",
+    "258.e0ab8f4f.chunk.css.map": "/saulprl-portfolio/static/css/258.e0ab8f4f.chunk.css.map",
+    "258.a0ed176d.chunk.js.map": "/saulprl-portfolio/static/js/258.a0ed176d.chunk.js.map",
+    "421.e0ab8f4f.chunk.css.map": "/saulprl-portfolio/static/css/421.e0ab8f4f.chunk.css.map",
+    "421.47b6e38f.chunk.js.map": "/saulprl-portfolio/static/js/421.47b6e38f.chunk.js.map",
+    "12.11ffd521.chunk.js.map": "/saulprl-portfolio/static/js/12.11ffd521.chunk.js.map",
+    "787.66611e13.chunk.js.map": "/saulprl-portfolio/static/js/787.66611e13.chunk.js.map",
+    "281.014d7e52.chunk.js.map": "/saulprl-portfolio/static/js/281.014d7e52.chunk.js.map",
+    "758.8f814e93.chunk.js.map": "/saulprl-portfolio/static/js/758.8f814e93.chunk.js.map",
+    "668.06ba59ee.chunk.js.map": "/saulprl-portfolio/static/js/668.06ba59ee.chunk.js.map",
+    "971.89fb1ab0.chunk.js.map": "/saulprl-portfolio/static/js/971.89fb1ab0.chunk.js.map",
+    "320.6237f708.chunk.js.map": "/saulprl-portfolio/static/js/320.6237f708.chunk.js.map",
+    "209.620ba0e6.chunk.js.map": "/saulprl-portfolio/static/js/209.620ba0e6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db8ea18d.css",
-    "static/js/main.706e6c59.js"
+    "static/css/main.a2e7142c.css",
+    "static/js/main.5cf4a423.js"
   ]
 }
