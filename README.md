@@ -8,7 +8,7 @@ As of the start of this project, my idea is to build a **Material UI** (which I'
 
 After starting with this project, I encountered some issues with VS Code autocompletion for Chakra UI (was forced to manually import components which is really inefficient). Because of this, I decided to just use Material UI and I'll again in the future with Chakra.
 
-This project is now being hosted on GitHub Pages, you can check it out by clicking [here](https://saulprl.github.io/saulprl-portfolio)
+This project is now being hosted on GitHub Pages, you can check it out by clicking [here](https://saulprl.github.io/saulprl-portfolio).
 
 # What I learned
 
