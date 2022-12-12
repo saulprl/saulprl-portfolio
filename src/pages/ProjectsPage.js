@@ -14,22 +14,28 @@ const ProjectDetails = lazy(() =>
 const ProjectsPage = () => {
   return (
     <>
-      <Route
-        path="/projects"
-        exact
-        render={() => (
-          <Box className={classes["page-content"]}>
-            <Projects />
-          </Box>
-        )}
-      />
       <Suspense
         fallback={
           <Skeleton variant="rounded" animation="wave" sx={{ height: "75%" }} />
         }
       >
         <Route
-          path="/projects/:id"
+          path="/projects"
+          exact
+          render={() => (
+            <Box className={classes["page-content"]}>
+              <Projects />
+            </Box>
+          )}
+        />
+      </Suspense>
+      <Suspense
+        fallback={
+          <Skeleton variant="rounded" animation="wave" sx={{ height: "75%" }} />
+        }
+      >
+        <Route
+          path="/projects/:name"
           render={() => (
             <Box className={classes["page-content"]}>
               <ProjectDetails />
