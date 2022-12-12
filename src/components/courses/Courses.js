@@ -10,16 +10,19 @@ const CourseItem = lazy(() => import("./CourseItem"));
 
 const Courses = () => {
   const [showCertificate, setShowCertificate] = useState(false);
-  const [certificate, setCertificate] = useState(null);
+  const [certificate, setCertificate] = useState({
+    image: null,
+    fallback: null,
+  });
 
-  const showCertificateHandler = (cert) => {
-    setCertificate(cert);
+  const showCertificateHandler = (cert, fallback) => {
+    setCertificate({ image: cert, fallback: fallback });
     setShowCertificate(true);
   };
 
   const closeCertificateHandler = () => {
     setShowCertificate(false);
-    setCertificate(null);
+    setCertificate({ image: null, fallback: null });
   };
 
   const coursesList = useMemo(
@@ -47,7 +50,8 @@ const Courses = () => {
       <CertificateImage
         open={showCertificate}
         onClose={closeCertificateHandler}
-        image={certificate}
+        image={certificate.image}
+        fallback={certificate.fallback}
       />
     </>
   );

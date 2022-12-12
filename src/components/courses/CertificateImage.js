@@ -7,9 +7,10 @@ import {
   useTheme,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import ImageWithFallback from "../layout/ImageWithFallback";
 
 const CertificateImage = (props) => {
-  const { open, onClose, image } = props;
+  const { open, onClose, image, fallback } = props;
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -50,8 +51,9 @@ const CertificateImage = (props) => {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <img
+          <ImageWithFallback
             src={image}
+            fallback={fallback}
             alt={"Completion certificate"}
             style={{
               margin: "auto",

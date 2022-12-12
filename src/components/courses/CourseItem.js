@@ -22,8 +22,8 @@ const CourseItem = ({ course, onShowCertificate }) => {
       ? "default"
       : theme.palette.background.default;
 
-  const showCertificateHandler = (cert) => {
-    onShowCertificate(cert);
+  const showCertificateHandler = (cert, fallback) => {
+    onShowCertificate(cert, fallback);
   };
 
   return (
@@ -73,7 +73,11 @@ const CourseItem = ({ course, onShowCertificate }) => {
           >
             <Button
               variant="contained"
-              onClick={showCertificateHandler.bind(null, course.certificate)}
+              onClick={showCertificateHandler.bind(
+                null,
+                course.certificate,
+                course.fallbackCert
+              )}
               startIcon={<Badge />}
               sx={{ textTransform: "none" }}
             >
