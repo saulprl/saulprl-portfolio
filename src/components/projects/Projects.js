@@ -1,4 +1,4 @@
-import { useCallback, useState, memo, lazy, Suspense } from "react";
+import { useState, memo, lazy, Suspense } from "react";
 
 import { CardContent, Skeleton } from "@mui/material";
 
@@ -10,15 +10,10 @@ const ProjectList = lazy(() => import("./ProjectList"));
 const Projects = () => {
   const [filters, setFilters] = useState([]);
 
-  const toggleFilter = useCallback(
-    (tech) =>
-      setFilters((prevState) =>
-        filters.includes(tech)
-          ? [...prevState.filter((filter) => filter !== tech)]
-          : [...prevState, tech]
-      ),
-    [filters]
-  );
+  const addFilter = (tech) => setFilters((prevState) => [...prevState, tech]);
+
+  const removeFilter = (tech) =>
+    setFilters((prevState) => prevState.filter((filter) => filter !== tech));
 
   const listSuspenseFallback = (
     <>
@@ -55,7 +50,8 @@ const Projects = () => {
           <ProjectFilters
             filters={filters}
             technologies={technologies}
-            onToggleFilter={toggleFilter}
+            onAddFilter={addFilter}
+            onRemoveFilter={removeFilter}
           />
         </Suspense>
         <Suspense fallback={listSuspenseFallback}>

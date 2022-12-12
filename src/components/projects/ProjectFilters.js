@@ -1,4 +1,4 @@
-import { useState, useMemo, lazy, Suspense } from "react";
+import { useState, useMemo, lazy, Suspense, useCallback } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import {
@@ -19,7 +19,7 @@ import classes from "./Projects.module.css";
 const TechnologyChip = lazy(() => import("../technologies/TechnologyChip"));
 
 const ProjectFilters = (props) => {
-  const { filters, technologies, onToggleFilter } = props;
+  const { filters, technologies, onAddFilter, onRemoveFilter } = props;
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -29,6 +29,17 @@ const ProjectFilters = (props) => {
   const toggleContent = () => {
     setExpanded((prevState) => !prevState);
   };
+
+  const toggleFilter = useCallback(
+    (tech, selected) => {
+      if (selected) {
+        onRemoveFilter(tech);
+      } else {
+        onAddFilter(tech);
+      }
+    },
+    [onAddFilter, onRemoveFilter]
+  );
 
   const techChips = useMemo(() => {
     const values = [];
@@ -43,12 +54,12 @@ const ProjectFilters = (props) => {
           technology={tech}
           clickable={true}
           selected={filters.includes(tech)}
-          onToggle={onToggleFilter}
+          onToggle={toggleFilter}
           sx={{ fontSize: "11px" }}
         />
       </Suspense>
     ));
-  }, [onToggleFilter, technologies, filters]);
+  }, [toggleFilter, technologies, filters]);
 
   return (
     <Card
@@ -76,7 +87,7 @@ const ProjectFilters = (props) => {
       />
       <CSSTransition
         in={expanded}
-        timeout={isMobile ? 450 : 300}
+        timeout={isMobile ? 250 : 100}
         mountOnEnter={false}
         unmountOnExit={true}
         classNames={{

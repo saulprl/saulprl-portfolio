@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useRef } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { List, Skeleton, useMediaQuery, useTheme } from "@mui/material";
@@ -18,10 +18,30 @@ const ProjectList = (props) => {
   const projectList = useMemo(
     () =>
       projects.map((proj) => (
-        <CSSTransition
+        <Suspense
           key={proj.id}
+          fallback={
+            <Skeleton
+              variant="rounded"
+              animation="wave"
+              height={75}
+              // width={}
+              sx={{ mx: "auto", mb: "8px" }}
+            />
+          }
+        >
+          <ProjectItem project={proj} filters={props.filters} />
+        </Suspense>
+      )),
+    [projects, props.filters]
+  );
+
+  return (
+    <List disablePadding>
+      <TransitionGroup>
+        <CSSTransition
           timeout={isMobile ? 450 : 300}
-          mountOnEnter={false}
+          mountOnEnter={true}
           unmountOnExit={true}
           classNames={{
             enter: classes["fade-enter"],
@@ -30,55 +50,28 @@ const ProjectList = (props) => {
             exitActive: classes["fade-exit-active"],
           }}
         >
-          <Suspense
-            fallback={
-              <Skeleton
-                variant="rounded"
-                animation="wave"
-                height={75}
-                // width={}
-                sx={{ mx: "auto", mb: "8px" }}
-              />
-            }
-          >
-            <ProjectItem project={proj} filters={props.filters} />
-          </Suspense>
+          <>{projectList}</>
         </CSSTransition>
-      )),
-    [projects, props.filters, isMobile]
-  );
-
-  return (
-    <List disablePadding>
-      <TransitionGroup>{projectList}</TransitionGroup>
+      </TransitionGroup>
     </List>
   );
 };
 
 const useProjectsData = (filters) => {
-  const [projects, setProjects] = useState(projectsData);
+  const projects = useRef(projectsData);
 
-  const filterProjects = (filt) => {
-    setProjects(
-      projectsData.filter((project) =>
-        filt.every(
+  const filteredProjects = useMemo(
+    () =>
+      projects.current.filter((proj) =>
+        filters.every(
           (filter) =>
-            project.database.includes(filter) ||
-            project.language.includes(filter)
+            proj.database.includes(filter) || proj.language.includes(filter)
         )
-      )
-    );
-  };
+      ),
+    [filters]
+  );
 
-  useEffect(() => {
-    if (filters.length === 0) {
-      setProjects(projectsData);
-    } else {
-      filterProjects(filters);
-    }
-  }, [filters]);
-
-  return projects;
+  return filteredProjects;
 };
 
 export default ProjectList;

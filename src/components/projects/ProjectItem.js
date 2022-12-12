@@ -36,7 +36,7 @@ const ProjectItem = (props) => {
       }}
       className={classes["project-item"]}
     >
-      <CardActionArea LinkComponent={Link} to={`/projects/${proj.id}`}>
+      <CardActionArea LinkComponent={Link} to={`/projects/${proj.name}`}>
         <CardContent>
           <Box
             component="div"
@@ -50,11 +50,7 @@ const ProjectItem = (props) => {
               <Typography variant="h6" fontWeight="bold">
                 {proj.name}
               </Typography>
-              <Typography variant="body2">{`${
-                proj.description.length >= 166
-                  ? `${proj.description.substring(0, 166)}...`
-                  : proj.description
-              }`}</Typography>
+              <Typography variant="body2">{proj.excerpt}</Typography>
             </Box>
             <Box
               sx={{
