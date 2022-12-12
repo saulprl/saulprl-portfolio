@@ -23,14 +23,15 @@ import ProjectImage from "./ProjectImage";
 import TechnologyChip from "../technologies/TechnologyChip";
 
 import { projects } from "../../data/data";
+import ImageWithFallback from "../layout/ImageWithFallback";
 
 const ProjectDetails = () => {
   const theme = useTheme();
-  const { id } = useParams();
+  const { name } = useParams();
   const history = useHistory();
   const [openCarousel, setOpenCarousel] = useState(false);
 
-  const selectedProject = projects.find((proj) => proj.id === id);
+  const selectedProject = projects.find((proj) => proj.name === name);
 
   const backClickHandler = () => {
     history.push("/projects");
@@ -54,29 +55,43 @@ const ProjectDetails = () => {
       : theme.palette.background.default;
   const iconColor = theme.palette.mode === "dark" ? "default" : "#2C2C2C";
 
-  let images = <Typography variant="body1">No images found.</Typography>;
-  if (selectedProject.images.length > 0) {
+  let images = (
+    <Typography variant="body1" textAlign="center">
+      No images found
+    </Typography>
+  );
+  if (
+    selectedProject.images.length > 0 &&
+    selectedProject.fallback.length > 0
+  ) {
     images = (
-      <ImageList cols={3} rowHeight={81.5} sx={{ height: "131px" }}>
+      <ImageList
+        cols={3}
+        rowHeight={81.5}
+        sx={{ height: "131px", overflow: "hidden" }}
+      >
         <ImageListItem>
-          <img
+          <ImageWithFallback
             src={selectedProject.images[0]}
+            fallback={selectedProject.fallback[0]}
             alt={`${selectedProject.name} 1`}
-            style={{ maxHeight: "131px" }}
+            style={{ width: "100%" }}
           />
         </ImageListItem>
         <ImageListItem>
-          <img
+          <ImageWithFallback
             src={selectedProject.images[1]}
+            fallback={selectedProject.fallback[1]}
             alt={`${selectedProject.name} 2`}
-            style={{ maxHeight: "131px" }}
+            style={{ width: "100%" }}
           />
         </ImageListItem>
         <ImageListItem>
-          <img
+          <ImageWithFallback
             src={selectedProject.images[2]}
+            fallback={selectedProject.fallback[2]}
             alt={`${selectedProject.name} 3`}
-            style={{ maxHeight: "131px" }}
+            style={{ width: "100%" }}
           />
         </ImageListItem>
       </ImageList>
@@ -182,12 +197,16 @@ const ProjectDetails = () => {
                 </IconButton>
               </Tooltip>
             </Box>
-            <CardActionArea
-              LinkComponent="button"
-              onClick={openCarouselHandler}
-            >
-              {images}
-            </CardActionArea>
+            {selectedProject.images.length > 0 ? (
+              <CardActionArea
+                LinkComponent="button"
+                onClick={openCarouselHandler}
+              >
+                {images}
+              </CardActionArea>
+            ) : (
+              images
+            )}
           </CardContent>
         </Card>
       </CardContent>
@@ -195,6 +214,7 @@ const ProjectDetails = () => {
         open={openCarousel}
         onClose={closeCarouselHandler}
         images={selectedProject.images}
+        fallback={selectedProject.fallback}
       />
     </>
   );
