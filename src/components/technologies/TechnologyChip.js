@@ -4,7 +4,7 @@ const TechnologyChip = (props) => {
   const { technology, clickable, onToggle, selected, sx } = props;
 
   const toggleSelect = () => {
-    onToggle(technology);
+    onToggle(technology, selected);
   };
 
   return (
