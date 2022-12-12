@@ -1,7 +1,10 @@
 import { lazy, memo, Suspense } from "react";
 import { Avatar, Box, Skeleton, Typography, useTheme } from "@mui/material";
 
-import saulprlPic from "../../assets/pic-squared.jpg";
+import ImageWithFallback from "./ImageWithFallback";
+
+import saulprlWebp from "../../assets/saulprl.webp";
+import saulprlJpeg from "../../assets/saulprl.jpg";
 
 const Socials = lazy(() => import("./Socials"));
 
@@ -12,9 +15,6 @@ const Presentation = () => {
 
   const avatar = (
     <Avatar
-      alt="Saúl Ramos"
-      src={saulprlPic}
-      imgProps={{ loading: "lazy" }}
       sx={{
         width: { xs: "170px", sm: "220px" },
         height: { xs: "170px", sm: "220px" },
@@ -24,7 +24,14 @@ const Presentation = () => {
         border: theme.palette.border.default,
         transition: "border 250ms linear",
       }}
-    />
+    >
+      <ImageWithFallback
+        src={saulprlWebp}
+        fallback={saulprlJpeg}
+        alt="Saúl Ramos"
+        style={{ height: "100%", width: "100%" }}
+      />
+    </Avatar>
   );
 
   return (
