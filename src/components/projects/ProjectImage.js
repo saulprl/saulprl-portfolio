@@ -2,14 +2,16 @@ import { useState } from "react";
 
 import { Box, IconButton, Modal, Tooltip, useTheme } from "@mui/material";
 import { ArrowBack, ArrowForward, Close } from "@mui/icons-material";
+import ImageWithFallback from "../layout/ImageWithFallback";
 
 const ProjectImage = (props) => {
-  const { open, onClose, images } = props;
+  const { open, onClose, images, fallback } = props;
 
   const theme = useTheme();
   const [index, setIndex] = useState(0);
 
   const imageSource = images[index];
+  const fallbackSource = fallback[index];
 
   const closeModalHandler = (event) => {
     onClose();
@@ -102,8 +104,9 @@ const ProjectImage = (props) => {
             padding: "8px",
           }}
         >
-          <img
+          <ImageWithFallback
             src={imageSource}
+            fallback={fallbackSource}
             alt={`Screenshot ${index + 1}`}
             style={{
               margin: "auto",
